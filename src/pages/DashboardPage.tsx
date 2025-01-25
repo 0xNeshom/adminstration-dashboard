@@ -1,9 +1,9 @@
-import DashboardLayout from "../layouts/DashboardLayout"
+import Dashboard from "../layouts/Dashboard"
 
 const DashboardPage = () => {
   return (
-    <div>
-      <DashboardLayout children={undefined}/>
+    <div >
+      <Dashboard />
     </div>
   )
 }

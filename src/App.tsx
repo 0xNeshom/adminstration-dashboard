@@ -1,15 +1,19 @@
-import { BrowserRouter as Router ,Route , Routes } from "react-router-dom"
-import DashboardPage from './pages/DashboardPage';
-import ChartCreationPage from './pages/ChartCreationPage';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ReactRouterAppProvider } from "@toolpad/core/react-router";
+import DashboardPage from "./pages/DashboardPage";
+import ChartCreationPage from "./pages/ChartCreationPage";
+
 const App = () => {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<DashboardPage/>}/>
-        <Route path="/create-chart" element={<ChartCreationPage />} />
-      </Routes>
+      <ReactRouterAppProvider>
+        <Routes>
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/create-chart" element={<ChartCreationPage />} />
+        </Routes>
+      </ReactRouterAppProvider>
     </Router>
-  )
-}
+  );
+};
 
-export default App
+export default App;
