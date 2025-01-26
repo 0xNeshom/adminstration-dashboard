@@ -76,32 +76,17 @@ const demoTheme = createTheme({
   },
 });
 
-// function DemoPageContent({ pathname }: { pathname: string }) {
-//   return (
-//     <Box
-//       sx={{
-//         py: 4,
-//         display: 'flex',
-//         flexDirection: 'column',
-//         alignItems: 'center',
-//         textAlign: 'center',
-//       }}
-//     >
-//       <Typography>Dashboard content for {pathname}</Typography>
-//     </Box>
-//   );
-// }
+
 
 const App = () => {
   return (
     <Router>
       <ReactRouterAppProvider>
         <AppProvider navigation={NAVIGATION} theme={demoTheme}>
-          <DashboardLayout>
+          <DashboardLayout >
             <Routes>
               <Route path="dashboard" element={<ChartLayout/>} />
               <Route path="/create-chart" element={<ChartCreation />} />
-              {/* <Route path="/bar-chart" element={<BarChartLayout />} /> */}
             </Routes>
           </DashboardLayout>
         </AppProvider>
