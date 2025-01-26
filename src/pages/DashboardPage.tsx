@@ -1,11 +1,11 @@
-import Dashboard from "../layouts/Dashboard"
+// import Dashboard from "../layouts/Dashboard"
 
-const DashboardPage = () => {
-  return (
-    <div >
-      <Dashboard />
-    </div>
-  )
-}
+// const DashboardPage = () => {
+//   return (
+//     <div >
+//       <Dashboard />
+//     </div>
+//   )
+// }
 
-export default DashboardPage
+// export default DashboardPage
