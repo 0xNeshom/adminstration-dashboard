@@ -1,8 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { UseDispatch,useSelector   } from 'react-redux';
-import { RootState } from '@reduxjs/toolkit/query';
+import {RootState} from '../../app/store'
+import { ChartType as ChartTypeEnum } from '../../types/Chart';
+import { useDispatch } from 'react-redux';
+import { setChartType } from '../../features/chart/chartSlice';
+// import { RootState } from '@reduxjs/toolkit/query';
 const ChartType = () => {
+  const dispatch = useDispatch();
+  const currentType = useSelector((state :RootState)=>state.charts.currentChart.type);
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
@@ -10,13 +16,13 @@ const ChartType = () => {
         <Select
           labelId='demo-simple-select-label'
           id='demo-simple-select'
-          value={ChartType}
+          value={currentType}
           label='Chart Type'
-          // onChange={handleChange}
+          onChange={(e)=>dispatch(setChartType(e.target.value as ChartTypeEnum))}
         >
-          <MenuItem value={10}> Pie </MenuItem>
-          <MenuItem value={20}>Line </MenuItem>
-          <MenuItem value={30}> Bar </MenuItem>
+          <MenuItem value='pie'> Pie </MenuItem>
+          <MenuItem value='line'>Line </MenuItem>
+          <MenuItem value='bar'> Bar </MenuItem>
         </Select>
       </FormControl>
     </Box>
