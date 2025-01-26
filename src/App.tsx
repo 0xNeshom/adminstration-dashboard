@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ReactRouterAppProvider } from '@toolpad/core/react-router';
 import { AppProvider, type Navigation } from '@toolpad/core/AppProvider';
@@ -8,7 +7,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import DescriptionIcon from '@mui/icons-material/Description';
 import LayersIcon from '@mui/icons-material/Layers';
-import ChartCreation from './Components/ChartCreation';
+import ChartCreation from './Components/ChartCreation/ChartCreation';
 import ChartLayout from './Components/ChartLayout';
 import { createTheme } from '@mui/material/styles';
 // import Box from '@mui/material/Box';
@@ -76,17 +75,15 @@ const demoTheme = createTheme({
   },
 });
 
-
-
 const App = () => {
   return (
     <Router>
       <ReactRouterAppProvider>
         <AppProvider navigation={NAVIGATION} theme={demoTheme}>
-          <DashboardLayout >
+          <DashboardLayout>
             <Routes>
-              <Route path="dashboard" element={<ChartLayout/>} />
-              <Route path="/create-chart" element={<ChartCreation />} />
+              <Route path='dashboard' element={<ChartLayout />} />
+              <Route path='/create-chart' element={<ChartCreation />} />
             </Routes>
           </DashboardLayout>
         </AppProvider>
