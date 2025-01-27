@@ -8,11 +8,11 @@ interface ChartState {
 
 
 const sampleData = [
-  {name: 'Jan', pv: 2400, uv: 4000},
-  {name: 'Feb', pv: 1398, uv: 3000},
-  {name: 'Mar', pv: 9800, uv: 2000},
-  {name: 'Apr', pv: 3908, uv: 2780},
-  {name: 'May', pv: 4800, uv: 1890}
+  {name: 'َA', pv: 2400, uv: 4000},
+  {name: 'B', pv: 1398, uv: 3000},
+  {name: 'C', pv: 9800, uv: 2000},
+  {name: 'D', pv: 3908, uv: 2780},
+  {name: 'E', pv: 4800, uv: 1890}
 ];
 
 const initialState: ChartState = {
@@ -47,7 +47,7 @@ const chartsSlice = createSlice({
         orientation: state.currentChart.orientation as 'horizontal' | 'vertical',
         fields: state.currentChart.fields as { xAxis: string; yAxis: string },
         settings: state.currentChart.settings as Chart['settings'],
-        position: { x: 0, y: 0 },
+        position: { x: 250, y: 250 },
         size: { width: 400, height: 300 },
         data: sampleData
       };
@@ -58,6 +58,16 @@ const chartsSlice = createSlice({
     },
     removeChart: (state, action: PayloadAction<string>) => {
       state.charts = state.charts.filter(chart => chart.id !== action.payload);
+    },
+    saveChart:(state)=>{
+      localStorage.setItem('savedCharts', JSON.stringify(state.charts));
+
+    },
+    laodCharts:(state) =>{
+      const savedCharts =localStorage.getItem('savedCharts');
+      if(savedCharts){
+        state.charts = JSON.parse(savedCharts);
+      }
     }
   },
 });
@@ -66,6 +76,8 @@ export const {
   setChartType, 
   addChart, 
   removeChart, 
-  setChartField
+  setChartField,
+  saveChart,
+  laodCharts
 } = chartsSlice.actions;
 export default chartsSlice.reducer;

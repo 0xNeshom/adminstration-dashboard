@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ReactRouterAppProvider } from '@toolpad/core/react-router';
 import { AppProvider, type Navigation } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-import AddchartIcon from '@mui/icons-material/Addchart';
+// import AddchartIcon from '@mui/icons-material/Addchart';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -10,9 +10,11 @@ import LayersIcon from '@mui/icons-material/Layers';
 // import ChartCreation from './Components/Charts/creation/ChartCreation';
 import ChartLayout from './components/charts/layouts/ChartLayout';
 import { createTheme } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { laodCharts } from './features/chart/chartSlice';
 // import Box from '@mui/material/Box';
 // import Typography from '@mui/material/Typography';
-
 const NAVIGATION: Navigation = [
   {
     kind: 'header',
@@ -22,11 +24,6 @@ const NAVIGATION: Navigation = [
     segment: 'dashboard',
     title: 'Dashboard',
     icon: <DashboardIcon />,
-  },
-  {
-    segment: 'chartCreation',
-    title: 'Chart Creation',
-    icon: <AddchartIcon />,
   },
   {
     kind: 'divider',
@@ -76,6 +73,13 @@ const demoTheme = createTheme({
 });
 
 const App = () => {
+  const dispatch = useDispatch();
+
+
+useEffect(()=>{
+  dispatch(laodCharts());
+},[dispatch])
+
   return (
     <Router>
       <ReactRouterAppProvider>

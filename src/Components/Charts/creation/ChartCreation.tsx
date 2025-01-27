@@ -32,7 +32,8 @@ import {
 } from 'recharts';
 import { RootState } from '../../../store/store';
 import { Chart } from '../../../types/Chart';
-
+import { saveChart } from '../../../features/chart/chartSlice';
+import FieldSelector from '../../FieldSelector';
 const ChartCreation = () => {
   const dispatch = useDispatch();
   const currentChart = useSelector(
@@ -50,15 +51,20 @@ const ChartCreation = () => {
     console.log('Chart Type Changed' + event.target.value);
   };
 
+  const handlSave = () => {
+    dispatch(saveChart());
+  };
+
   return (
     <>
       <Typography sx={{ fontSize: '2rem' }}>Chart Creation</Typography>
       <Divider />
       <Stack
-        sx={{ marginTop: '20px', width: '90%' }}
+        sx={{ marginTop: '20px', width: '100%' }}
         direction='row'
         spacing={2}
       >
+        <FieldSelector/>
         <Orientation />
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>
@@ -77,6 +83,9 @@ const ChartCreation = () => {
         <Fields />
         <Button variant='contained' onClick={handlCreate}>
           Create
+        </Button>
+        <Button variant='contained' onClick={handlSave}>
+          Save
         </Button>
       </Stack>
     </>

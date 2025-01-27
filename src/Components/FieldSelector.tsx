@@ -10,7 +10,7 @@ const FieldSelector = () => {
 
   const availableFields = ['name', 'pv', 'uv'];
   return (
-    <div>
+    <div style={{ display: 'flex', gap:'10px' }}>
       <FormControl fullWidth sx={{ mb: 2 }}>
         <InputLabel>X Axis Field</InputLabel>
         <Select
@@ -21,7 +21,7 @@ const FieldSelector = () => {
               setChartField({
                 ...fields,
                 xAxis: e.target.value,
-                yAxis: fields?.yAxis || ''
+                yAxis: fields?.yAxis || '',
               })
             )
           }
@@ -44,7 +44,7 @@ const FieldSelector = () => {
               setChartField({
                 ...fields,
                 yAxis: e.target.value,
-                xAxis: fields?.xAxis || ''
+                xAxis: fields?.xAxis || '',
               })
             )
           }
