@@ -48,7 +48,7 @@ const ChartCreation = () => {
     event: SelectChangeEvent<'line' | 'bar' | 'pie' | 'scatter'>
   ) => {
     dispatch(setChartType(event.target.value as 'line' | 'bar' | 'pie'));
-    console.log('Chart Type Changed' + event.target.value);
+    // console.log('Chart Type Changed' + event.target.value);
   };
 
   const handlSave = () => {
@@ -68,7 +68,7 @@ const ChartCreation = () => {
         <Orientation />
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>
-            <InputLabel id='demo-simple-select-label'>Chart Type</InputLabel>
+            <InputLabel >Chart Type</InputLabel>
             <Select
               value={currentChart.type}
               label='Chart Type'

@@ -17,3 +17,5 @@ export interface Chart {
 }
 
 export type ChartType = 'line' | 'bar' | 'pie' | 'scatter';
+
+export type OrientationType = "vertical" | "horizontal" ;

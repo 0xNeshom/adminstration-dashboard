@@ -1,25 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Chart } from '../../types/Chart';
 import { ChartType } from '../../types/Chart';
+import { OrientationType } from '../../types/Chart';
 interface ChartState {
   charts: Chart[];
   currentChart:Partial<Chart>
 }
 
 
-const sampleData = [
-  {name: 'َA', pv: 2400, uv: 4000},
-  {name: 'B', pv: 1398, uv: 3000},
-  {name: 'C', pv: 9800, uv: 2000},
-  {name: 'D', pv: 3908, uv: 2780},
-  {name: 'E', pv: 4800, uv: 1890}
-];
 
 const initialState: ChartState = {
   charts: [],
   currentChart: {
     type: 'line' as ChartType ,
-    orientation: 'vertical',
+    orientation: 'vertical' as OrientationType,
     fields: {
       xAxis: 'name',
       yAxis: 'pv'
@@ -29,7 +23,14 @@ const initialState: ChartState = {
       showGrid: true,
       color: '#8884d8'
     },
-    data: sampleData
+    data: [
+      {name: 'َA', pv: 2400, uv: 4000},
+      {name: 'B', pv: 1398, uv: 3000},
+      {name: 'C', pv: 9800, uv: 2000},
+      {name: 'D', pv: 3908, uv: 2780},
+      {name: 'E', pv: 4800, uv: 1890}
+    ]
+    
   }
 };
 
@@ -46,16 +47,28 @@ const chartsSlice = createSlice({
         type: state.currentChart.type as ChartType,
         orientation: state.currentChart.orientation as 'horizontal' | 'vertical',
         fields: state.currentChart.fields as { xAxis: string; yAxis: string },
+        // xAxis : state.currentChart.fields as {xAxis : string},
         settings: state.currentChart.settings as Chart['settings'],
         position: { x: 250, y: 250 },
         size: { width: 400, height: 300 },
-        data: sampleData
+        data: state.currentChart.data
       };
       state.charts.push(newChart);
     },
-    setChartField: (state, action: PayloadAction<{ xAxis: string; yAxis: string }>) => {
-      state.currentChart.fields = action.payload;
-    },
+    // setXAxis: (state, action: PayloadAction<{   
+    //   field:string;
+    //   label?: string; 
+    //   dataKey?:string;
+    
+    // }>) => {
+    //   if(!state.currentChart.fields){
+    //     state.currentChart.fields ={};
+    //   }
+    //   state.currentChart.fields = {
+    //     ...state.currentChart.fields,
+    //     xAxis:action.payload.field
+    //   };
+    // },
     removeChart: (state, action: PayloadAction<string>) => {
       state.charts = state.charts.filter(chart => chart.id !== action.payload);
     },
@@ -76,7 +89,7 @@ export const {
   setChartType, 
   addChart, 
   removeChart, 
-  setChartField,
+  // setChartField,
   saveChart,
   laodCharts
 } = chartsSlice.actions;
