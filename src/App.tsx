@@ -7,8 +7,8 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import DescriptionIcon from '@mui/icons-material/Description';
 import LayersIcon from '@mui/icons-material/Layers';
-import ChartCreation from './Components/Charts/creation/ChartCreation';
-import ChartLayout from './Components/Charts/layouts/ChartLayout';
+// import ChartCreation from './Components/Charts/creation/ChartCreation';
+import ChartLayout from './components/charts/layouts/ChartLayout';
 import { createTheme } from '@mui/material/styles';
 // import Box from '@mui/material/Box';
 // import Typography from '@mui/material/Typography';
@@ -83,7 +83,6 @@ const App = () => {
           <DashboardLayout>
             <Routes>
               <Route path='dashboard' element={<ChartLayout />} />
-              <Route path='/create-chart' element={<ChartCreation />} />
             </Routes>
           </DashboardLayout>
         </AppProvider>

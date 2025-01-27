@@ -53,6 +53,9 @@ const chartsSlice = createSlice({
       };
       state.charts.push(newChart);
     },
+    setChartField: (state, action: PayloadAction<{ xAxis: string; yAxis: string }>) => {
+      state.currentChart.fields = action.payload;
+    },
     removeChart: (state, action: PayloadAction<string>) => {
       state.charts = state.charts.filter(chart => chart.id !== action.payload);
     }
@@ -62,6 +65,7 @@ const chartsSlice = createSlice({
 export const { 
   setChartType, 
   addChart, 
-  removeChart 
+  removeChart, 
+  setChartField
 } = chartsSlice.actions;
 export default chartsSlice.reducer;
