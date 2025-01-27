@@ -1,12 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import { UseDispatch,useSelector   } from 'react-redux';
-import {RootState} from '../../app/store'
-import { ChartType as ChartTypeEnum } from '../../types/Chart';
+ 
+import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { useSelector   } from 'react-redux';
+import { RootState } from '../../../store/store';
+import { ChartType as ChartTypeEnum } from '../../../types/Chart';
 import { useDispatch } from 'react-redux';
-import { setChartType } from '../../features/chart/chartSlice';
-// import { RootState } from '@reduxjs/toolkit/query';
-const ChartType = () => {
+import { setChartType } from '../../../features/chart/chartSlice';
+
+interface ChartTypeProps {
+  handleChartTypeChange : (event: SelectChangeEvent<"line" | "bar" | "pie" | "scatter">) => void;
+}
+const ChartType:React.FC<ChartTypeProps> = ({handleChartTypeChange}) => {
   const dispatch = useDispatch();
   const currentType = useSelector((state :RootState)=>state.charts.currentChart.type);
   return (
@@ -14,11 +18,9 @@ const ChartType = () => {
       <FormControl fullWidth>
         <InputLabel id='demo-simple-select-label'>Chart Type</InputLabel>
         <Select
-          labelId='demo-simple-select-label'
-          id='demo-simple-select'
           value={currentType}
           label='Chart Type'
-          onChange={(e)=>dispatch(setChartType(e.target.value as ChartTypeEnum))}
+          onChange={handleChartTypeChange}
         >
           <MenuItem value='pie'> Pie </MenuItem>
           <MenuItem value='line'>Line </MenuItem>
