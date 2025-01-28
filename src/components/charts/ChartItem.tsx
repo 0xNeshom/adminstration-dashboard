@@ -4,18 +4,21 @@ import { Box, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { ResponsiveContainer } from 'recharts';
-import { Chart } from '../../types/Chart';
+import { Chart } from '../../types/chart';
 import { useDispatch } from 'react-redux';
-import { toggleChartOrientation } from '../../features/chart/chartSlice'
+import { toggleChartOrientation } from '../../features/chart/chartSlice';
 interface ChartItemProps {
   chart: Chart;
-  renderChart: (chart: Chart) => JSX.Element;
-  handleDelete:(chartId:string)=>void;
+  renderChart: (chart: Chart) => JSX.Element | null;
+  handleDelete: (chartId: string) => void;
 }
 
-const ChartItem: React.FC<ChartItemProps> = ({ chart, renderChart ,handleDelete}) => {
+const ChartItem: React.FC<ChartItemProps> = ({
+  chart,
+  renderChart,
+  handleDelete,
+}) => {
   const dispatch = useDispatch();
-
 
   return (
     <Rnd
@@ -37,34 +40,42 @@ const ChartItem: React.FC<ChartItemProps> = ({ chart, renderChart ,handleDelete}
           bgcolor: 'white',
           boxShadow: '0 0 10px rgba(0,0,0,0.1)',
           border: '1px solid #ddd',
-          p: 1,
+          pl: 5,
+          pt: 3,
         }}
       >
-        <IconButton
+        <Box
           sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1,
             position: 'absolute',
             top: 0,
             left: 0,
-            zIndex: 1,
-            color: 'red',
+            zIndex: 0,
+            bgcolor: '#8884d8',
+            height: '100%',
           }}
-          onClick={() => handleDelete(chart.id)}
         >
-          <DeleteIcon />
-        </IconButton>
-        <IconButton
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 40,
-            zIndex: 1,
-            color: 'primary.main',
-          }}
-          onClick={() => dispatch(toggleChartOrientation(chart.id))}
-        >
-          <SwapVertIcon />
-        </IconButton>
-        <ResponsiveContainer>{renderChart(chart)}</ResponsiveContainer>
+          <IconButton
+            sx={{
+              color: 'error.main',
+            }}
+            onClick={() => handleDelete(chart.id)}
+          >
+            <DeleteIcon />
+          </IconButton>
+
+          <IconButton
+            sx={{
+              color: 'lightgreen',
+            }}
+            onClick={() => dispatch(toggleChartOrientation(chart.id))}
+          >
+            <SwapVertIcon />
+          </IconButton>
+        </Box>
+        <ResponsiveContainer>{renderChart(chart) || <></>}</ResponsiveContainer>
       </Box>
     </Rnd>
   );

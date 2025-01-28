@@ -1,6 +1,6 @@
 import React from 'react';
 import { PieChart, Pie, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Chart } from '../../../types/Chart';
+import { Chart } from '../../../types/chart';
 
 interface PieChartProps {
   chart: Chart;
@@ -8,7 +8,7 @@ interface PieChartProps {
 
 const PieChartComponent: React.FC<PieChartProps> = ({ chart }) => {
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width='100%' height='100%'>
       <PieChart>
         <Pie
           data={chart.data}

@@ -1,18 +1,29 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
- 
-import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { useSelector   } from 'react-redux';
+
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from '@mui/material';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
-import { ChartType as ChartTypeEnum } from '../../../types/Chart';
+import { ChartType as ChartTypeEnum } from '../../../types/chart';
 import { useDispatch } from 'react-redux';
 import { setChartType } from '../../../features/chart/chartSlice';
 
 interface ChartTypeProps {
-  handleChartTypeChange : (event: SelectChangeEvent<"line" | "bar" | "pie" | "scatter">) => void;
+  handleChartTypeChange: (
+    event: SelectChangeEvent<'line' | 'bar' | 'pie' | 'scatter'>
+  ) => void;
 }
-const ChartType:React.FC<ChartTypeProps> = ({handleChartTypeChange}) => {
+const ChartType: React.FC<ChartTypeProps> = ({ handleChartTypeChange }) => {
   const dispatch = useDispatch();
-  const currentType = useSelector((state :RootState)=>state.charts.currentChart.type);
+  const currentType = useSelector(
+    (state: RootState) => state.charts.currentChart.type
+  );
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
