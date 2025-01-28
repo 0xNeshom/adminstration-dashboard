@@ -33,7 +33,7 @@ const ChartCreation = () => {
   ) => {
     dispatch(setChartType(event.target.value as 'line' | 'bar' | 'pie'));
   };
-
+  
   const handlSave = () => {
     dispatch(saveChart());
   };

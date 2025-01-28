@@ -16,42 +16,30 @@ interface BarChartProps {
 }
 
 const BarChartComponent: React.FC<BarChartProps> = ({ chart }) => {
+  const isHorizontal = chart.orientation === 'horizontal';
+
   return (
     <ResponsiveContainer width='100%' height='100%'>
       <BarChart
-        layout={chart.orientation === 'horizontal' ? 'vertical' : 'horizontal'}
+        layout={isHorizontal ? 'vertical' : 'horizontal'}
         data={chart.data}
       >
         <CartesianGrid strokeDasharray='3 3' />
-        {chart.orientation === 'vertical' ? (
+        {isHorizontal ? (
           <>
-            <XAxis dataKey={chart.fields.xAxis} />
-            <YAxis dataKey={chart.fields.yAxis} />
+            <XAxis type="number" dataKey={chart.fields.yAxis} />
+            <YAxis type="category" dataKey={chart.fields.xAxis} />
+            <Bar dataKey={chart.fields.yAxis} fill={chart.settings.color} />
           </>
         ) : (
           <>
-            <XAxis
-              type='number'
-              dataKey={chart.fields.yAxis}
-              axisLine={false}
-            />
-            <YAxis
-              type='category'
-              dataKey={chart.fields.xAxis}
-              axisLine={false}
-            />
+            <XAxis type="category" dataKey={chart.fields.xAxis} />
+            <YAxis type="number" dataKey={chart.fields.yAxis} />
+            <Bar dataKey={chart.fields.yAxis} fill={chart.settings.color} />
           </>
         )}
         <Tooltip />
         {chart.settings.showLegend && <Legend />}
-        <Bar
-          dataKey={
-            chart.orientation === 'vertical'
-              ? chart.fields.yAxis
-              : chart.fields.xAxis
-          }
-          fill={chart.settings.color}
-        />
       </BarChart>
     </ResponsiveContainer>
   );

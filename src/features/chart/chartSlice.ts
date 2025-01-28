@@ -76,6 +76,9 @@ const chartsSlice = createSlice({
           chart.orientation === 'vertical' ? 'horizontal' : 'vertical';
       }
     },
+    setChartOrientation: (state, action: PayloadAction<Torientation>) => {
+      state.currentChart.orientation = action.payload;
+    },
   },
 });
 
@@ -86,5 +89,6 @@ export const {
   saveChart,
   laodCharts,
   toggleChartOrientation,
+  setChartOrientation
 } = chartsSlice.actions;
 export default chartsSlice.reducer;
