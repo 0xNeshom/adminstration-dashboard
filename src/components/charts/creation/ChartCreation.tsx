@@ -1,39 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Stack from '@mui/material/Stack';
 import Orientation from './Orientation';
 import Fields from './Fields';
-import ChartType from './ChartType';
-import {
-  Box,
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  Typography,
-} from '@mui/material';
+import {Box,Button,FormControl,InputLabel,MenuItem,Select,SelectChangeEvent,Typography,} from '@mui/material';
 import Divider from '@mui/material/Divider';
 import { useDispatch } from 'react-redux';
 import { addChart, setChartType } from '../../../features/chart/chartSlice';
 import { useSelector } from 'react-redux';
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Legend,
-  Line,
-  LineChart,
-  Pie,
-  PieChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
 import { RootState } from '../../../store/store';
-import { Chart } from '../../../types/Chart';
 import { saveChart } from '../../../features/chart/chartSlice';
-import FieldSelector from '../../FieldSelector';
 const ChartCreation = () => {
   const dispatch = useDispatch();
   const currentChart = useSelector(
@@ -45,8 +19,7 @@ const ChartCreation = () => {
   };
 
   const handleChartTypeChange = (
-    event: SelectChangeEvent<'line' | 'bar' | 'pie' | 'scatter'>
-  ) => {
+    event: SelectChangeEvent<'line' | 'bar' | 'pie' | 'scatter'>) => {
     dispatch(setChartType(event.target.value as 'line' | 'bar' | 'pie'));
     // console.log('Chart Type Changed' + event.target.value);
   };
@@ -64,11 +37,11 @@ const ChartCreation = () => {
         direction='row'
         spacing={2}
       >
-        <FieldSelector/>
+        {/* <FieldSelector/> */}
         <Orientation />
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>
-            <InputLabel >Chart Type</InputLabel>
+            <InputLabel>Chart Type</InputLabel>
             <Select
               value={currentChart.type}
               label='Chart Type'

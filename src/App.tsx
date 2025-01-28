@@ -8,7 +8,8 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import DescriptionIcon from '@mui/icons-material/Description';
 import LayersIcon from '@mui/icons-material/Layers';
 // import ChartCreation from './Components/Charts/creation/ChartCreation';
-import ChartLayout from './components/charts/layouts/ChartLayout';
+// import ChartLayout from './components/charts/layouts/ChartLayout';
+import ChartLayout from './layouts/ChartLayout';
 import { createTheme } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -75,10 +76,9 @@ const demoTheme = createTheme({
 const App = () => {
   const dispatch = useDispatch();
 
-
-useEffect(()=>{
-  dispatch(laodCharts());
-},[dispatch])
+  useEffect(() => {
+    dispatch(laodCharts());
+  }, [dispatch]);
 
   return (
     <Router>

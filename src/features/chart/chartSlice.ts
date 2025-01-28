@@ -18,13 +18,14 @@ const initialState: ChartState = {
       xAxis: 'name',
       yAxis: 'pv'
     },
+    position:{x:250 , y:250},
     settings: {
       showLegend: true,
       showGrid: true,
       color: '#8884d8'
     },
     data: [
-      {name: 'َA', pv: 2400, uv: 4000},
+      {name: 'A', pv: 2400, uv: 4000},
       {name: 'B', pv: 1398, uv: 3000},
       {name: 'C', pv: 9800, uv: 2000},
       {name: 'D', pv: 3908, uv: 2780},
@@ -81,7 +82,24 @@ const chartsSlice = createSlice({
       if(savedCharts){
         state.charts = JSON.parse(savedCharts);
       }
-    }
+    },
+    // switchParameters: (state, action: PayloadAction<string>) => {
+    //   const chart = state.charts.find(c => c.id === action.payload);
+    //   if (chart) {
+    //     const tempXAxis = chart.fields.xAxis;
+    //     chart.fields.xAxis = chart.fields.yAxis;
+    //     chart.fields.yAxis = tempXAxis;
+    //     chart.orientation = chart.orientation === 'vertical' ? 'horizontal' : 'vertical';
+    //   }
+    // },
+    toggleChartOrientation: (state, action: PayloadAction<string>) => {
+      const chart = state.charts.find(c => c.id === action.payload);
+      if (chart) {
+        chart.orientation =
+          chart.orientation === 'vertical' ? 'horizontal' : 'vertical';
+
+      }
+    },
   },
 });
 
@@ -89,8 +107,9 @@ export const {
   setChartType, 
   addChart, 
   removeChart, 
-  // setChartField,
+  // switchParameters,
   saveChart,
-  laodCharts
+  laodCharts,
+  toggleChartOrientation
 } = chartsSlice.actions;
 export default chartsSlice.reducer;
