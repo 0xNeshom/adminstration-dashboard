@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import chartsReducer from '../features/chart/chartSlice'
-
+import currentChartReducer from '../features/chart/currentChartSlice'
 export const store = configureStore({
   reducer: {
     charts:chartsReducer,
+    currentChart : currentChartReducer,
   },
 })
 

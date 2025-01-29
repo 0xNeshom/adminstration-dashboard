@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
 import { removeChart, saveChart } from '../features/chart/chartSlice';
@@ -8,6 +9,7 @@ import LineChartComponent from '../components/charts/chartRender/LineChartCompon
 import BarChartComponent from '../components/charts/chartRender/BarChartComponent';
 import PieChartComponent from '../components/charts/chartRender/PieChartComponent';
 import ChartItem from '../components/charts/ChartItem';
+import CustomizableChart from '../components/charts/creation/CustomizableChart ';
 
 const ChartLayout: React.FC = () => {
   const charts = useSelector((state: RootState) => state.charts.charts);
@@ -33,6 +35,7 @@ const ChartLayout: React.FC = () => {
 
   return (
     <Box sx={{ width: '100%', height: '100vh', padding: '20px' }}>
+      
       <ChartCreation />
       {charts.map((chart) => (
         <ChartItem

@@ -1,45 +1,26 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+// import { SelectChangeEvent, FormControl, InputLabel, Select, MenuItem, FormHelperText } from "@mui/material"
 
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from '@mui/material';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
-import { ChartType as ChartTypeEnum } from '../../../types/chart';
-import { useDispatch } from 'react-redux';
-import { setChartType } from '../../../features/chart/chartSlice';
+// interface ChartTypeProps{
+//   handleChartTypeChange: (event: SelectChangeEvent<"bar" | "line" | "pie">) => void
+//   error: boolean;
+//   currentChart:
+// }
+// const ChartType:React.FC<ChartTypeProps> = ({handleChartTypeChange,error}) => {
+//   return (
+//     <FormControl  error={error} sx={{ minWidth: 120 }}>
+//     <InputLabel>Chart Type</InputLabel>
+//     <Select
+//       value={currentChart.type}
+//       label='Chart Type'
+//       onChange={handleChartTypeChange}
+//     >
+//       <MenuItem value='bar'>Bar</MenuItem>
+//       <MenuItem value='line'>Line</MenuItem>
+//       <MenuItem value='pie'>Pie</MenuItem>
+//     </Select>
+//     {error && <FormHelperText >you sould select a type </FormHelperText>}
+//   </FormControl>
+//   )
+// }
 
-interface ChartTypeProps {
-  handleChartTypeChange: (
-    event: SelectChangeEvent<'line' | 'bar' | 'pie' | 'scatter'>
-  ) => void;
-}
-const ChartType: React.FC<ChartTypeProps> = ({ handleChartTypeChange }) => {
-  const dispatch = useDispatch();
-  const currentType = useSelector(
-    (state: RootState) => state.charts.currentChart.type
-  );
-  return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-        <InputLabel id='demo-simple-select-label'>Chart Type</InputLabel>
-        <Select
-          value={currentType}
-          label='Chart Type'
-          onChange={handleChartTypeChange}
-        >
-          <MenuItem value='pie'> Pie </MenuItem>
-          <MenuItem value='line'>Line </MenuItem>
-          <MenuItem value='bar'> Bar </MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
-  );
-};
-
-export default ChartType;
+// export default ChartType

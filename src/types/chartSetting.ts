@@ -1,5 +1,8 @@
 export interface ChartSettings {
     showLegend: boolean;
     showGrid: boolean;
-    color: string;
+    color: {
+      pv:string,
+      uv:string
+    };
   }

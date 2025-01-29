@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Chart } from '../../types/chart';
 import { TchartType } from '../../types/chartType';
 import { Torientation } from '../../types/orientation';
+import {ChartFields} from '../../types/chartFields';
+import { ChartSettings } from '../../types/chartSetting';
 interface ChartState {
   charts: Chart[];
   currentChart: Partial<Chart>;
@@ -20,7 +23,10 @@ const initialState: ChartState = {
     settings: {
       showLegend: true,
       showGrid: true,
-      color: '#8884d8',
+      color: {
+        pv: '#8884d8' ,
+        uv:'#82ca9d'
+      },
     },
     data: [
       { name: 'A', pv: 2400, uv: 4000 },
@@ -43,10 +49,8 @@ const chartsSlice = createSlice({
       const newChart: Chart = {
         id: Date.now().toString(),
         type: state.currentChart.type as TchartType,
-        orientation: state.currentChart.orientation as
-          | 'horizontal'
-          | 'vertical',
-        fields: state.currentChart.fields as { xAxis: string; yAxis: string },
+        orientation: state.currentChart.orientation as Torientation,
+        fields: state.currentChart.fields as ChartFields,
         settings: state.currentChart.settings as Chart['settings'],
         position: { x: 250, y: 250 },
         size: { width: 400, height: 300 },
@@ -79,6 +83,17 @@ const chartsSlice = createSlice({
     setChartOrientation: (state, action: PayloadAction<Torientation>) => {
       state.currentChart.orientation = action.payload;
     },
+    setChartColors: (
+      state,
+      action: PayloadAction<Partial<ChartSettings>>
+    ) => {
+      if (state.currentChart.settings) {
+        state.currentChart.settings = {
+          ...state.currentChart.settings,
+          ...action.payload,
+        };
+      }
+    },
   },
 });
 
@@ -89,6 +104,7 @@ export const {
   saveChart,
   laodCharts,
   toggleChartOrientation,
-  setChartOrientation
+  setChartOrientation,
+  setChartColors
 } = chartsSlice.actions;
 export default chartsSlice.reducer;

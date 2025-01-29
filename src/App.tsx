@@ -15,7 +15,6 @@ import { Chip, Stack, Tooltip, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CloudCircleIcon from '@mui/icons-material/CloudCircle';
 
-
 const NAVIGATION: Navigation = [
   {
     kind: 'header',
@@ -59,12 +58,12 @@ const NAVIGATION: Navigation = [
 
 function CustomAppTitle() {
   return (
-    <Stack direction="row" alignItems="center" spacing={2}>
-      <CloudCircleIcon fontSize="large" color="primary" />
-      <Typography variant="h6">My App</Typography>
-      <Chip size="small" label="BETA" color="info" />
-      <Tooltip title="Connected to production">
-        <CheckCircleIcon color="success" fontSize="small" />
+    <Stack direction='row' alignItems='center' spacing={2}>
+      <CloudCircleIcon fontSize='large' color='primary' />
+      <Typography variant='h6'>My App</Typography>
+      <Chip size='small' label='BETA' color='info' />
+      <Tooltip title='Connected to production'>
+        <CheckCircleIcon color='success' fontSize='small' />
       </Tooltip>
     </Stack>
   );
@@ -84,13 +83,6 @@ const demoTheme = createTheme({
       xl: 1536,
     },
   },
-  // components: {
-  //   MuiAccordionDetails: {
-  //     defaultProps: {
-  //       showLogo: false // این خط رو اضافه کنید
-  //     }
-  //   }
-  // }
 });
 
 const App = () => {
@@ -104,11 +96,11 @@ const App = () => {
     <Router>
       <ReactRouterAppProvider>
         <AppProvider navigation={NAVIGATION} theme={demoTheme}>
-          <DashboardLayout    slots={{
-          appTitle: CustomAppTitle,
-          // toolbarActions: ToolbarActionsSearch,
-          // sidebarFooter: SidebarFooter,
-        }}>
+          <DashboardLayout
+            slots={{
+              appTitle: CustomAppTitle,
+            }}
+          >
             <Routes>
               <Route path='dashboard' element={<ChartLayout />} />
             </Routes>
