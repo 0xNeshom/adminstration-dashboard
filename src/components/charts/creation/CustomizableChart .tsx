@@ -31,18 +31,23 @@ const CustomizableChart = () => {
   //   ]
 
   const handleColorChange = (metric: 'pv' | 'uv', color: string) => {
-    dispatch(setChartColors({ [metric]: color }));
+    dispatch(setChartColors({ 
+        color: {
+            ...chartColors,
+            [metric]:color
+        }
+    }));
   };
 
   return (
     // <Card sx={{ width: '100%', maxWidth: '4xl', p: 2 }}>
     //   <CardContent>
-    <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-      <Typography variant='h5' component='h2' gutterBottom>
+    <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center', height:'100%'}}>
+      {/* <Typography variant='h5' component='h2' gutterBottom>
         Customization
-      </Typography>
+      </Typography> */}
 
-      <Box sx={{ mb: 4, display: 'flex', gap: 4 }}>
+      <Box sx={{ mb: 4, display: 'flex', gap: 4,}}>
         <Box>
           <InputLabel htmlFor='pvColor'>Color PV:</InputLabel>
           <TextField
@@ -52,7 +57,7 @@ const CustomizableChart = () => {
             onChange={(e) => handleColorChange('pv', e.target.value)}
             sx={{ 
               width: '80px',
-              height: '32px',
+              height: '100%',
               '& .MuiInputBase-input': {
                 padding: '4px',
               },

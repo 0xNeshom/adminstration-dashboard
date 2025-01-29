@@ -13,8 +13,8 @@ interface ChartState {
 const initialState: ChartState = {
   charts: [],
   currentChart: {
-    type: '' as TchartType,
-    orientation: 'vertical' as Torientation,
+    type: 'bar' ,
+    orientation: 'vertical' ,
     fields: {
       xAxis: 'name',
       yAxis: 'pv',

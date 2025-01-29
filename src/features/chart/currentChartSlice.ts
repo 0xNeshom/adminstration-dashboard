@@ -55,7 +55,6 @@ const currentChartSlice = createSlice({
         ...action.payload,
       };
     },
-    // سایر اکشن‌ها برای currentChart
   },
 });
 

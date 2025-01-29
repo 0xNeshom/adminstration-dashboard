@@ -22,7 +22,7 @@ const PieChartComponent: React.FC<PieChartProps> = ({ chart }) => {
           data={processedData}
           dataKey={chart.fields.yAxis}
           nameKey={chart.fields.xAxis}
-          fill={chart.settings.color}
+          fill={chart.settings.color.pv}
           label
         />
         <Tooltip />
