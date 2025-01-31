@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Chart } from '../../../types/chart';
+import { Chart } from '../../types/chartTypes';
 import {
   BarChart,
   CartesianGrid,
@@ -45,7 +45,6 @@ const BarChartComponent: React.FC<BarChartProps> = ({ chart }) => {
             <YAxis type='number' dataKey={chart.fields.yAxis} />
             <Bar dataKey={chart.fields.yAxis} fill={chart.settings.color.uv} />
             <Bar dataKey='uv' fill='#82ca9d' />{' '}
-
           </>
         )}
         <Tooltip />

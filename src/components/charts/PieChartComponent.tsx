@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { PieChart, Pie, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Chart } from '../../../types/chart';
+import { Chart } from '../../types/chart';
 
 interface PieChartProps {
   chart: Chart;

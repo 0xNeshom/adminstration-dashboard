@@ -4,9 +4,9 @@ import { Box, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { ResponsiveContainer } from 'recharts';
-import { Chart } from '../../types/chart';
+import { Chart } from '../../types/chartTypes';
 import { useDispatch } from 'react-redux';
-import { toggleChartOrientation } from '../../features/chart/chartSlice';
+import { toggleChartOrientation } from '../../features/chartSlice';
 interface ChartItemProps {
   chart: Chart;
   renderChart: (chart: Chart) => JSX.Element | null;

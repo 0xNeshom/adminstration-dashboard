@@ -8,7 +8,7 @@ import {
   LineChart,
   ResponsiveContainer,
 } from 'recharts';
-import { Chart } from '../../../types/chart';
+import { Chart } from '../../types/chart';
 import { useMemo } from 'react';
 
 interface LineChartProps {
@@ -65,7 +65,6 @@ const LineChartComponent: React.FC<LineChartProps> = ({ chart }) => {
               stroke='purple'
               activeDot={{ r: 8 }}
             />
-            
           </>
         )}
         <Tooltip />

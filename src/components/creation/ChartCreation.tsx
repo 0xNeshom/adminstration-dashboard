@@ -14,13 +14,12 @@ import {
 } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import { useDispatch } from 'react-redux';
-import { addChart, setChartType } from '../../../features/chart/chartSlice';
+import { addChart, setChartType,saveChart } from '../../features/chartSlice';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
-import { saveChart } from '../../../features/chart/chartSlice';
+import { RootState } from '../../store/store';
 import { useState } from 'react';
-import { TchartType } from '../../../types/chartType';
-import CustomizableChart from './CustomizableChart ';
+import { ChartType } from '../../types/chartTypes';
+// import CustomizableChart from './CustomizableChart ';
 const ChartCreation = () => {
   const [error, setError] = useState<boolean>(false);
 
@@ -38,8 +37,8 @@ const ChartCreation = () => {
     setError(false);
   };
 
-  const handleChartTypeChange = (event: SelectChangeEvent<TchartType>) => {
-    dispatch(setChartType(event.target.value as TchartType));
+  const handleChartTypeChange = (event: SelectChangeEvent<ChartType>) => {
+    dispatch(setChartType(event.target.value as ChartType));
   };
 
   const handlSave = () => {
@@ -91,7 +90,7 @@ const ChartCreation = () => {
             Save
           </Button>
         </Box>
-        <CustomizableChart />
+        {/* <CustomizableChart /> */}
       </Stack>
     </>
   );

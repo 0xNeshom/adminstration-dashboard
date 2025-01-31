@@ -1,15 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store/store';
-import { removeChart, saveChart } from '../features/chart/chartSlice';
-import ChartCreation from '../components/charts/creation/ChartCreation';
+import { RootState } from '../../store/store';
+import { removeChart, saveChart } from '../../features/chartSlice';
+import ChartCreation from '../creation/ChartCreation';
 import { Box } from '@mui/material';
-import { Chart } from '../types/chart';
-import LineChartComponent from '../components/charts/chartRender/LineChartComponent';
-import BarChartComponent from '../components/charts/chartRender/BarChartComponent';
-import PieChartComponent from '../components/charts/chartRender/PieChartComponent';
-import ChartItem from '../components/charts/ChartItem';
-import CustomizableChart from '../components/charts/creation/CustomizableChart ';
+import { Chart } from '../../types/chartTypes';
+import LineChartComponent from '../charts/LineChartComponent';
+import BarChartComponent from '../charts/BarChartComponent';
+import PieChartComponent from '../charts/PieChartComponent';
+import ChartItem from '../charts/ChartItem';
+// import CustomizableChart from '../components/charts/creation/CustomizableChart ';
 
 const ChartLayout: React.FC = () => {
   const charts = useSelector((state: RootState) => state.charts.charts);
@@ -35,7 +34,6 @@ const ChartLayout: React.FC = () => {
 
   return (
     <Box sx={{ width: '100%', height: '100vh', padding: '20px' }}>
-      
       <ChartCreation />
       {charts.map((chart) => (
         <ChartItem

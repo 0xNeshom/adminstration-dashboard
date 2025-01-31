@@ -1,10 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Chart } from '../../types/chart';
-import { TchartType } from '../../types/chartType';
-import { Torientation } from '../../types/orientation';
-import {ChartFields} from '../../types/chartFields';
-import { ChartSettings } from '../../types/chartSetting';
+import { Chart } from '../types/chartTypes';
+import { ChartFields, ChartType, Orientation } from '../types/chartTypes';
 interface ChartState {
   charts: Chart[];
   currentChart: Partial<Chart>;
@@ -13,8 +9,8 @@ interface ChartState {
 const initialState: ChartState = {
   charts: [],
   currentChart: {
-    type: 'bar' ,
-    orientation: 'vertical' ,
+    type: 'bar',
+    orientation: 'vertical',
     fields: {
       xAxis: 'name',
       yAxis: 'pv',
@@ -24,8 +20,8 @@ const initialState: ChartState = {
       showLegend: true,
       showGrid: true,
       color: {
-        pv: '#8884d8' ,
-        uv:'#82ca9d'
+        pv: 'string',
+        uv: 'string',
       },
     },
     data: [
@@ -42,14 +38,14 @@ const chartsSlice = createSlice({
   name: 'charts',
   initialState,
   reducers: {
-    setChartType: (state, action: PayloadAction<TchartType>) => {
+    setChartType: (state, action: PayloadAction<ChartType>) => {
       state.currentChart.type = action.payload;
     },
     addChart: (state) => {
       const newChart: Chart = {
         id: Date.now().toString(),
-        type: state.currentChart.type as TchartType,
-        orientation: state.currentChart.orientation as Torientation,
+        type: state.currentChart.type as ChartType,
+        orientation: state.currentChart.orientation as Orientation,
         fields: state.currentChart.fields as ChartFields,
         settings: state.currentChart.settings as Chart['settings'],
         position: { x: 250, y: 250 },
@@ -80,20 +76,20 @@ const chartsSlice = createSlice({
           chart.orientation === 'vertical' ? 'horizontal' : 'vertical';
       }
     },
-    setChartOrientation: (state, action: PayloadAction<Torientation>) => {
+    setChartOrientation: (state, action: PayloadAction<Orientation>) => {
       state.currentChart.orientation = action.payload;
     },
-    setChartColors: (
-      state,
-      action: PayloadAction<Partial<ChartSettings>>
-    ) => {
-      if (state.currentChart.settings) {
-        state.currentChart.settings = {
-          ...state.currentChart.settings,
-          ...action.payload,
-        };
-      }
-    },
+    // setChartColors: (
+    //   state,
+    //   action: PayloadAction<Partial<ChartSettings>>
+    // ) => {
+    //   if (state.currentChart.settings) {
+    //     state.currentChart.settings = {
+    //       ...state.currentChart.settings,
+    //       ...action.payload,
+    //     };
+    //   }
+    // },
   },
 });
 
@@ -105,6 +101,6 @@ export const {
   laodCharts,
   toggleChartOrientation,
   setChartOrientation,
-  setChartColors
+  // setChartColors
 } = chartsSlice.actions;
 export default chartsSlice.reducer;

@@ -1,1 +1,0 @@
-export type Torientation = "vertical" | "horizontal" ;
