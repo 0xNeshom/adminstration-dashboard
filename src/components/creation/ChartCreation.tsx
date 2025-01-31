@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Stack from '@mui/material/Stack';
 import Orientation from './Orientation';
 import Fields from './Fields';
@@ -14,11 +15,12 @@ import {
 } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import { useDispatch } from 'react-redux';
-import { addChart, setChartType,saveChart } from '../../features/chartSlice';
+import { addChart, setChartType, saveChart } from '../../features/chartSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useState } from 'react';
 import { ChartType } from '../../types/chartTypes';
+import OrientationComponent from './Orientation';
 // import CustomizableChart from './CustomizableChart ';
 const ChartCreation = () => {
   const [error, setError] = useState<boolean>(false);
@@ -47,51 +49,57 @@ const ChartCreation = () => {
 
   return (
     <>
-      <Typography sx={{ fontSize: '2rem' }}>Chart Creation</Typography>
-      <Divider />
-      <Stack
-        sx={{
-          marginTop: '20px',
+      <Box
+        style={{
+          display: 'flex',
           width: '100%',
-          height: '70px',
+          height: '50px',
+          gap: '10px',
+          alignItems: 'center',
         }}
-        direction='row'
-        spacing={2}
+        // direction='row'
+        // spacing={2}
       >
-        <Box sx={{ display: 'flex', gap: '10px' }}>
-          <Orientation />
-          <FormControl error={error} sx={{ minWidth: 120 }}>
-            <InputLabel>Chart Type</InputLabel>
-            <Select
-              value={currentChart.type}
-              label='Chart Type'
-              onChange={handleChartTypeChange}
-            >
-              <MenuItem value='bar'>Bar</MenuItem>
-              <MenuItem value='line'>Line</MenuItem>
-              <MenuItem value='pie'>Pie</MenuItem>
-            </Select>
-            {error && <FormHelperText>you sould select a type </FormHelperText>}
-          </FormControl>
-          <Fields />
-          <Button
-            variant='contained'
-            onClick={handlCreate}
-            sx={{ height: '80%' }}
+        <Typography sx={{ fontSize: '1rem', fontWeight: 'bold' }}>
+          Chart Creation
+        </Typography>
+        {/* <Box sx={{ display: 'flex', gap: '10px' }}> */}
+        <Divider orientation='vertical' />
+        <OrientationComponent />
+
+        <FormControl error={error} size='small' style={{ width: '120px' }}>
+          <InputLabel>Chart Type</InputLabel>
+          <Select
+            value={currentChart.type}
+            label='Chart Type'
+            onChange={handleChartTypeChange}
           >
-            Create
-          </Button>
-          <Button
-            sx={{ height: '80%' }}
-            variant='contained'
-            onClick={handlSave}
-            disabled={!currentChart.type}
-          >
-            Save
-          </Button>
-        </Box>
+            <MenuItem value='bar'>Bar</MenuItem>
+            <MenuItem value='line'>Line</MenuItem>
+            <MenuItem value='pie'>Pie</MenuItem>
+          </Select>
+          {error && <FormHelperText>you sould select a type </FormHelperText>}
+        </FormControl>
+        <Fields />
+        <Button
+          variant='contained'
+          onClick={handlCreate}
+          sx={{ height: '80%' }}
+        >
+          Create
+        </Button>
+        <Button
+          sx={{ height: '80%' }}
+          variant='contained'
+          onClick={handlSave}
+          disabled={!currentChart.type}
+        >
+          Save
+        </Button>
+        {/* </Box> */}
         {/* <CustomizableChart /> */}
-      </Stack>
+      </Box>
+      <Divider orientation='horizontal' sx={{ marginTop: '10px' }} />
     </>
   );
 };

@@ -34,6 +34,8 @@ const ChartItem: React.FC<ChartItemProps> = ({
     >
       <Box
         sx={{
+          display: 'flex',
+          flexDirection: 'column',
           position: 'relative',
           width: '100%',
           height: '100%',
@@ -53,7 +55,7 @@ const ChartItem: React.FC<ChartItemProps> = ({
             top: 0,
             left: 0,
             zIndex: 0,
-            bgcolor: '#8884d8',
+            bgcolor: '#E8F9FF',
             height: '100%',
           }}
         >

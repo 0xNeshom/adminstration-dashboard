@@ -1,4 +1,11 @@
-import {Box,FormControl,InputLabel,MenuItem,Select,SelectChangeEvent,} from '@mui/material';
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from '@mui/material';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
@@ -16,15 +23,14 @@ const OrientationComponent: React.FC = () => {
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
+    
+      <FormControl size='small' >
         <InputLabel>Orientation</InputLabel>
         <Select value={orientation} label='Orientation' onChange={handleChange}>
           <MenuItem value='vertical'>Vertical</MenuItem>
           <MenuItem value='horizontal'>Horizontal</MenuItem>
         </Select>
       </FormControl>
-    </Box>
   );
 };
 

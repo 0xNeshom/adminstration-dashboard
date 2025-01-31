@@ -36,7 +36,7 @@ const BarChartComponent: React.FC<BarChartProps> = ({ chart }) => {
           <>
             <XAxis type='number' dataKey={chart.fields.yAxis} />
             <YAxis type='category' dataKey={chart.fields.xAxis} />
-            <Bar dataKey={chart.fields.yAxis} fill={chart.settings.color.pv} />
+            <Bar dataKey={chart.fields.yAxis} fill='#82ca9d' />
             <Bar dataKey='uv' fill='#82ca9d' />{' '}
           </>
         ) : (
