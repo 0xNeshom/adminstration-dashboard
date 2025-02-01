@@ -6,9 +6,11 @@ const Fields = () => {
       <FormControl fullWidth size='small'>
         <InputLabel>Fields</InputLabel>
         <Select label='Fields'>
-          <MenuItem>example 1</MenuItem>
-          <MenuItem>Twenty</MenuItem>
-          <MenuItem>DD</MenuItem>
+          <MenuItem>Vulnerability</MenuItem>
+          <MenuItem>Scan</MenuItem>
+          <MenuItem>Device Overview</MenuItem>
+          <MenuItem>Device Critical</MenuItem>
+
         </Select>
       </FormControl>
     </Box>

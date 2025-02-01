@@ -20,8 +20,8 @@ export interface ChartFieldDefinition {
 
 export interface ChartFields {
   availableFields: ChartFieldDefinition[];
-  selectedXAxis: string[];
-  selectedYAxis: string[];
+  selectedXAxis: string;
+  selectedYAxis: string;
 }
 
 // export interface ChartSettings {

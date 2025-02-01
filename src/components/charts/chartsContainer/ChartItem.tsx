@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Rnd } from 'react-rnd';
-import { Box, Collapse, IconButton, Paper } from '@mui/material';
+import { Box, Collapse, Divider, IconButton, Paper } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { ResponsiveContainer } from 'recharts';
-import { Chart } from '../../types/chartTypes';
+import { Chart } from '../../../types/chartTypes';
 import { useDispatch } from 'react-redux';
-import { toggleChartOrientation } from '../../features/chartSlice';
+import { toggleChartOrientation } from '../../../features/chartsSlice';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 interface ChartItemProps {
   chart: Chart;
@@ -37,6 +37,7 @@ const ChartItem: React.FC<ChartItemProps> = ({
         sx={{
           display: 'flex',
           flexDirection: 'column',
+          gap:'10px',
           position: '',
           width: '100%',
           height: '100%',
@@ -54,12 +55,12 @@ const ChartItem: React.FC<ChartItemProps> = ({
             height: '40px',
             cursor: 'pointer',
             pl: '5px',
-            border:'1px solid',
+            border: '1px solid',
             borderColor: 'primary.main',
           }}
           onClick={() => setIsPanelOpen(!isPanelOpen)}
         >
-          <MenuOpenIcon  color='primary' />
+          <MenuOpenIcon color='primary' />
 
           <Collapse in={isPanelOpen}>
             <Paper
@@ -68,7 +69,10 @@ const ChartItem: React.FC<ChartItemProps> = ({
                 flexDirection: 'row',
                 gap: 1,
                 p: 1,
+                position: 'absolute',
+                top: '20px',
                 bgcolor: 'white',
+                zIndex: 30,
               }}
             >
               <IconButton
@@ -79,10 +83,10 @@ const ChartItem: React.FC<ChartItemProps> = ({
               >
                 <DeleteIcon />
               </IconButton>
-
+              <Divider orientation='vertical' />
               <IconButton
                 sx={{
-                  color: 'lightgreen',
+                  color: 'primary.main',
                 }}
                 onClick={() => dispatch(toggleChartOrientation(chart.id))}
               >

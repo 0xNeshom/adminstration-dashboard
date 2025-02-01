@@ -10,7 +10,7 @@ import ChartLayout from './components/layout/ChartLayout';
 import { createTheme } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { laodCharts } from './features/chartSlice';
+import { loadCharts } from './features/chartsSlice';
 import { Chip, Stack, Tooltip, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CloudCircleIcon from '@mui/icons-material/CloudCircle';
@@ -89,7 +89,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(laodCharts());
+    dispatch(loadCharts());
   }, [dispatch]);
 
   return (

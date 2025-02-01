@@ -1,13 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
-import { removeChart, saveChart } from '../../features/chartSlice';
-import ChartCreation from '../creation/ChartCreation';
+import { removeChart, saveCharts } from '../../features/chartsSlice';
+import ChartCreation from '../creation/creationContainer/ChartCreation';
 import { Box } from '@mui/material';
 import { Chart } from '../../types/chartTypes';
 import LineChartComponent from '../charts/LineChartComponent';
 import BarChartComponent from '../charts/BarChartComponent';
 import PieChartComponent from '../charts/PieChartComponent';
-import ChartItem from '../charts/ChartItem';
+import ChartItem from '../charts/chartsContainer/ChartItem';
 // import CustomizableChart from '../components/charts/creation/CustomizableChart ';
 
 const ChartLayout: React.FC = () => {
@@ -16,7 +16,7 @@ const ChartLayout: React.FC = () => {
 
   const handleDelete = async (chartId: string) => {
     await dispatch(removeChart(chartId));
-    dispatch(saveChart());
+    dispatch(saveCharts());
   };
 
   const renderChart = (chart: Chart) => {
@@ -33,7 +33,7 @@ const ChartLayout: React.FC = () => {
   };
 
   return (
-    <Box sx={{ width: '100%', height: '100vh', padding: '20px', }}>
+    <Box sx={{ width: '100%', height: '100vh', padding: '20px' }}>
       <ChartCreation />
       {charts.map((chart) => (
         <ChartItem

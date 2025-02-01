@@ -36,15 +36,15 @@ const BarChartComponent: React.FC<BarChartProps> = ({ chart }) => {
           <>
             <XAxis type='number' dataKey={chart.fields.yAxis} />
             <YAxis type='category' dataKey={chart.fields.xAxis} />
-            <Bar dataKey={chart.fields.yAxis} fill='#82ca9d' />
-            <Bar dataKey='uv' fill='#82ca9d' />{' '}
+            <Bar dataKey={chart.fields.yAxis} fill='#2973B2' />
+            <Bar dataKey='uv' fill='#2973B2' />{' '}
           </>
         ) : (
           <>
             <XAxis type='category' dataKey={chart.fields.xAxis} />
             <YAxis type='number' dataKey={chart.fields.yAxis} />
             <Bar dataKey={chart.fields.yAxis} fill={chart.settings.color.uv} />
-            <Bar dataKey='uv' fill='#82ca9d' />{' '}
+            <Bar dataKey='uv' fill='#2973B2' />{' '}
           </>
         )}
         <Tooltip />
