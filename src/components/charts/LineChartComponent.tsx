@@ -8,7 +8,7 @@ import {
   LineChart,
   ResponsiveContainer,
 } from 'recharts';
-import { Chart } from '../../types/chart';
+import { Chart } from '../../types/chartTypes';
 import { useMemo } from 'react';
 
 interface LineChartProps {

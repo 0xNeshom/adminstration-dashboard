@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Rnd } from 'react-rnd';
-import { Box, IconButton } from '@mui/material';
+import { Box, Collapse, IconButton, Paper } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { ResponsiveContainer } from 'recharts';
 import { Chart } from '../../types/chartTypes';
 import { useDispatch } from 'react-redux';
 import { toggleChartOrientation } from '../../features/chartSlice';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 interface ChartItemProps {
   chart: Chart;
   renderChart: (chart: Chart) => JSX.Element | null;
@@ -19,7 +20,7 @@ const ChartItem: React.FC<ChartItemProps> = ({
   handleDelete,
 }) => {
   const dispatch = useDispatch();
-
+  const [isPanelOpen, setIsPanelOpen] = useState<boolean>(false);
   return (
     <Rnd
       default={{
@@ -36,46 +37,59 @@ const ChartItem: React.FC<ChartItemProps> = ({
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          position: 'relative',
+          position: '',
           width: '100%',
           height: '100%',
           bgcolor: 'white',
           boxShadow: '0 0 10px rgba(0,0,0,0.1)',
           border: '1px solid #ddd',
-          pl: 5,
-          pt: 3,
         }}
       >
         <Box
           sx={{
             display: 'flex',
-            flexDirection: 'column',
-            gap: 1,
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            zIndex: 0,
-            bgcolor: '#E8F9FF',
-            height: '100%',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            bgcolor: 'white',
+            height: '40px',
+            cursor: 'pointer',
+            pl: '5px',
+            border:'1px solid',
+            borderColor: 'primary.main',
           }}
+          onClick={() => setIsPanelOpen(!isPanelOpen)}
         >
-          <IconButton
-            sx={{
-              color: 'error.main',
-            }}
-            onClick={() => handleDelete(chart.id)}
-          >
-            <DeleteIcon />
-          </IconButton>
+          <MenuOpenIcon  color='primary' />
 
-          <IconButton
-            sx={{
-              color: 'lightgreen',
-            }}
-            onClick={() => dispatch(toggleChartOrientation(chart.id))}
-          >
-            <SwapVertIcon />
-          </IconButton>
+          <Collapse in={isPanelOpen}>
+            <Paper
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                gap: 1,
+                p: 1,
+                bgcolor: 'white',
+              }}
+            >
+              <IconButton
+                sx={{
+                  color: 'error.main',
+                }}
+                onClick={() => handleDelete(chart.id)}
+              >
+                <DeleteIcon />
+              </IconButton>
+
+              <IconButton
+                sx={{
+                  color: 'lightgreen',
+                }}
+                onClick={() => dispatch(toggleChartOrientation(chart.id))}
+              >
+                <SwapVertIcon />
+              </IconButton>
+            </Paper>
+          </Collapse>
         </Box>
         <ResponsiveContainer>{renderChart(chart) || <></>}</ResponsiveContainer>
       </Box>

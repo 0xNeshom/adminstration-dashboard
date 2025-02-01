@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import Stack from '@mui/material/Stack';
-import Orientation from './Orientation';
+ 
 import Fields from './Fields';
 import {
   Box,
