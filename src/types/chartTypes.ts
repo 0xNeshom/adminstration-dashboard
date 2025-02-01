@@ -12,32 +12,24 @@ export interface Size {
   height: number;
 }
 
-export interface ChartFieldDefinition {
-  key: string;
-  label: string;
-  type: string;
-}
 
 export interface ChartFields {
-  availableFields: ChartFieldDefinition[];
-  selectedXAxis: string;
-  selectedYAxis: string;
+  xAxis: string;
+  yAxis: string;
+  availableFields: string[];
+ 
 }
 
-// export interface ChartSettings {
-//   showLegend: boolean;
-//   showGrid: boolean;
-//   color: string;
-// }
+
 
 export interface ChartDataItem {
-  [key: string]: string | number;
+  name: string; 
+  values: ChartValue[];
 }
-
-export interface ChartFields {
-    xAxis: string;
-    yAxis: string;
-  }
+export interface ChartValue {
+  pv: number; 
+  uv: number; 
+}
   
   export interface ChartSettings {
     showLegend: boolean;
@@ -57,4 +49,24 @@ export interface Chart {
   fields: ChartFields;
   settings: ChartSettings;
   data?: ChartDataItem[];
+}
+
+export interface ChartValue {
+  pv: number; 
+  uv: number; 
+}
+
+export interface ChartDataItem {
+  name: string;
+  values: ChartValue[];  // <-- 'values' here
+}
+export interface ChartValue {
+  pv: number;
+  uv: number;
+}
+export interface Datasets {
+  scan: ChartDataItem[];
+  vulnerability: ChartDataItem[];
+  deviceOverview: ChartDataItem[];
+  deviceCritical: ChartDataItem[];
 }

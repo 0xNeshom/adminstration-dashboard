@@ -1,12 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {
-  Chart,
-  ChartType,
-  Orientation,
-  ChartFields,
-} from '../types/chartTypes';
-
+import { Chart } from '../types/chartTypes';
 interface ChartsState {
   charts: Chart[];
 }

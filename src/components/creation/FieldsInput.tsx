@@ -1,20 +1,43 @@
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormHelperText,
+  SelectChangeEvent,
+} from '@mui/material';
+import { ReactNode } from 'react';
 
-const Fields = () => {
+interface FieldsInputProps {
+  errorField: boolean;
+  selectedTitle: string;
+  titles: string[];
+  handleTitleChange:  (event: SelectChangeEvent<string>, child: ReactNode) => void;
+}
+
+const FieldsInput: React.FC<FieldsInputProps> = ({
+  errorField,
+  titles,
+  selectedTitle,
+  handleTitleChange,
+}) => {
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth size='small'>
-        <InputLabel>Fields</InputLabel>
-        <Select label='Fields'>
-          <MenuItem>Vulnerability</MenuItem>
-          <MenuItem>Scan</MenuItem>
-          <MenuItem>Device Overview</MenuItem>
-          <MenuItem>Device Critical</MenuItem>
-
-        </Select>
-      </FormControl>
-    </Box>
+    <FormControl error={errorField}  sx={{ minWidth: 120 }} size='small'>
+      <InputLabel>Fields</InputLabel>
+      <Select value={selectedTitle} onChange={handleTitleChange} label='Fields'>
+        {titles.map((title) => (
+          <MenuItem key={title} value={title}>
+            {title}
+          </MenuItem>
+        ))}
+      </Select>
+      {errorField && (
+        <FormHelperText >
+          you sould select a field
+        </FormHelperText>
+      )}
+    </FormControl>
   );
 };
 
-export default Fields;
+export default FieldsInput;

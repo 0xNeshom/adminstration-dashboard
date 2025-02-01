@@ -26,7 +26,7 @@ const ChartInput: React.FC<ChartTypeProps> = ({ handleChart, error }) => {
         <MenuItem value='line'>Line</MenuItem>
         <MenuItem value='pie'>Pie</MenuItem>
       </Select>
-      {error && <FormHelperText>you sould select a type </FormHelperText>}
+      {error && <FormHelperText sx={{color:'red'}}>you sould select a type </FormHelperText>}
     </FormControl>
   );
 };
