@@ -40,12 +40,45 @@ const currentChartSlice = createSlice({
     updateChartFields: (state, action: PayloadAction<Partial<ChartFields>>) => {
       state.fields = { ...state.fields, ...action.payload };
     },
-    processedChartData:(state : PayloadAction<DataItem>)=>{
-      const conversion = (value : number)=> {
-        switch(state.payload.unit){
+    setTimeRange : (state, action:PayloadAction<'daily' | 'monthly' | 'yearly' >)=>{
+      state.timeRange = action.payload;
+    },
+    setUnit : (state ,action:PayloadAction<'gram' | 'kg' | 'ton'>)=>{
+      state.unit =action.payload;
+    },
+    
+    processedChartData:(state )=>{
+      const convertUnit = (value : number)=> {
+        switch(state.unit){
           case 'gram' : return value * 1000;
           case 'ton' :return value / 1000;
+          default: return value
         }
+        const groupedData :Record<string, number[]> = {};
+        state.data.forEach((item) => {
+          const date =new Date(item.date);
+          let key :string =''
+
+          switch(state.timeRange) {
+            case 'daily':
+              key = date.toLocaleDateString('fa-IR');
+              break;
+              
+            case 'monthly':
+              key = `${date.getFullYear()}-${date.getMonth() + 1}`;
+              break;
+              
+            case 'yearly':
+              key = date.getFullYear().toString();
+              break;
+          }
+
+          if (!groupedData[key]) {
+            groupedData[key] = 0;
+          }
+          
+          groupedData[key] += convertUnit(item.quantity);
+        });
     }
     // updateChartSettings: (
     //   state,
