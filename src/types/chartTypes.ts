@@ -12,33 +12,31 @@ export interface Size {
   height: number;
 }
 
-
 export interface ChartFields {
   xAxis: string;
   yAxis: string;
-  availableFields: string[];
- 
 }
 
+// export interface ChartDataItem {
+//   name: string;
+//   values: ChartValue[];
+// }
+// export interface ChartValue {
+//   pv: number;
+//   uv: number;
+// }
 
+export interface ChartSettings {
+  showLegend: boolean;
+  showGrid: boolean;
+  color: {
+    pv: string;
+    uv: string;
+  };
+}
 
-export interface ChartDataItem {
-  name: string; 
-  values: ChartValue[];
-}
-export interface ChartValue {
-  pv: number; 
-  uv: number; 
-}
-  
-  export interface ChartSettings {
-    showLegend: boolean;
-    showGrid: boolean;
-    color: {
-      pv:string,
-      uv:string
-    };
-  }
+export type TimeRange = 'daily' | 'monthly' | 'yearly';
+export type Unit = 'kg' | 'gram' | 'ton';
 
 export interface Chart {
   id: string;
@@ -47,26 +45,39 @@ export interface Chart {
   position: Position;
   size?: Size;
   fields: ChartFields;
-  settings: ChartSettings;
-  data?: ChartDataItem[];
+  settings?: ChartSettings;
+  data: ChartData;
+  timeRange: TimeRange;
+  unit: Unit;
+  processedData: ProcessedChartData[];
 }
 
-export interface ChartValue {
-  pv: number; 
-  uv: number; 
+export interface ProcessedChartData {
+  label: string;
+  value: number;
 }
 
-export interface ChartDataItem {
-  name: string;
-  values: ChartValue[];  // <-- 'values' here
-}
-export interface ChartValue {
-  pv: number;
-  uv: number;
-}
-export interface Datasets {
-  scan: ChartDataItem[];
-  vulnerability: ChartDataItem[];
-  deviceOverview: ChartDataItem[];
-  deviceCritical: ChartDataItem[];
-}
+export type ChartData = Array<{
+  date: string;
+  quantity: number;
+  unit: 'kg';
+}>;
+// export interface ChartValue {
+//   name:string;
+//   pv: number;
+//   uv: number;
+// }
+
+// export interface PieChartData {
+//   name: string;
+//   value: number;
+//   id: string;
+// }
+
+// export interface LineBarChartData {
+//   name: string;
+//   pv: number;
+//   uv: number;
+// }
+
+// export type ChartData = LineBarChartData[] ;

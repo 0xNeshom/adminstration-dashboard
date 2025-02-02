@@ -1,43 +1,37 @@
-import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormHelperText,
-  SelectChangeEvent,
-} from '@mui/material';
-import { ReactNode } from 'react';
+// /* eslint-disable @typescript-eslint/no-unused-vars */
+// import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+// import { useAppDispatch } from '../../store/hooks';
+// import { RootState } from '../../store/store';
+// import { useSelector } from 'react-redux';
+// // interface FieldsInputProps {
+// //   errorField: boolean;
+// //   selectedTitle: string;
+// //   titles: string[];
+// //   handleTitleChange: (
+// //     event: SelectChangeEvent<string>,
+// //     child: ReactNode
+// //   ) => void;
+// // }
 
-interface FieldsInputProps {
-  errorField: boolean;
-  selectedTitle: string;
-  titles: string[];
-  handleTitleChange:  (event: SelectChangeEvent<string>, child: ReactNode) => void;
-}
+// const FieldsInput: React.FC = () => {
+//   const dispatch = useAppDispatch();
+//   const xAxis = useSelector(
+//     (state: RootState) => state.currentChart.fields.xAxis
+//   );
+//   return (
+//     <FormControl sx={{ minWidth: 120 }} size='small'>
+//       <InputLabel>Fields</InputLabel>
+//       <Select label='Fields'>
+//         <MenuItem>Hello</MenuItem>
+//       </Select>
+//       {/* <FormHelperText >
+//           you sould select a field
+//         </FormHelperText> */}
+//     </FormControl>
+//   );
+// };
 
-const FieldsInput: React.FC<FieldsInputProps> = ({
-  errorField,
-  titles,
-  selectedTitle,
-  handleTitleChange,
-}) => {
-  return (
-    <FormControl error={errorField}  sx={{ minWidth: 120 }} size='small'>
-      <InputLabel>Fields</InputLabel>
-      <Select value={selectedTitle} onChange={handleTitleChange} label='Fields'>
-        {titles.map((title) => (
-          <MenuItem key={title} value={title}>
-            {title}
-          </MenuItem>
-        ))}
-      </Select>
-      {errorField && (
-        <FormHelperText >
-          you sould select a field
-        </FormHelperText>
-      )}
-    </FormControl>
-  );
-};
-
-export default FieldsInput;
+// export default FieldsInput;
+// // function state(state: unknown): unknown {
+// //   throw new Error('Function not implemented.');
+// // }

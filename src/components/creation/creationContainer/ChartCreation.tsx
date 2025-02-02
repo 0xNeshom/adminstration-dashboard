@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   FormControl,
-  FormHelperText,
   InputLabel,
   MenuItem,
   Select,
@@ -19,36 +18,17 @@ import { Chart, ChartType } from '../../../types/chartTypes';
 import OrientationInput from '../OrientationInput';
 import ChartInput from '../ChartInput';
 import { useAppDispatch } from '../../../store/hooks';
-import flattenedData from '../../../data/data';
-import FieldsInput from '../FieldsInput';
 
-const ChartCreation = () => {
+const ChartCreation: React.FC = () => {
   const [error, setError] = useState<boolean>(false);
-  const [errorField, setErrorField] = useState<boolean>(false);
-  const [selectedTitle, setSelectedTitle] = useState<string>('');
-
+  // const [xAxisValue, setXAxisValue] = useState<string>('');
+  // const [yAxisValue, setYAxisValue] = useState<string>('');
   const dispatch = useAppDispatch();
   const currentChart = useSelector((state: RootState) => state.currentChart);
-
-  const titles = Array.from(new Set(flattenedData.map((item) => item.name)));
-
-  const filteredData = flattenedData.filter(
-    (item) => item.name === selectedTitle
-  );
-
-  const handleTitleChange = (event: SelectChangeEvent<string>) => {
-    setSelectedTitle(event.target.value as string);
-  };
 
   const handleCreate = () => {
     if (!currentChart.type) {
       setError(true);
-      return;
-    }
-
-    if (!selectedTitle) {
-      setErrorField(true);
-      // setSelectedTitle('')
       return;
     }
 
@@ -59,10 +39,11 @@ const ChartCreation = () => {
       fields: currentChart.fields,
       settings: currentChart.settings,
       position: currentChart.position,
-      size: { width: 400, height: 300 },
-      data: filteredData,
+      data: [],
+      processedData: [],
+      timeRange: 'monthly',
+      unit: 'kg',
     };
-    console.log(newChart);
     dispatch(addChart(newChart));
     setError(false);
   };
@@ -92,26 +73,22 @@ const ChartCreation = () => {
         <Divider orientation='vertical' />
         <OrientationInput />
         <ChartInput error={error} handleChart={handleChartTypeChange} />
-        <FieldsInput errorField={errorField} selectedTitle={selectedTitle}  handleTitleChange={handleTitleChange}  titles={titles} />
-        {/* <FormControl error={error} sx={{ minWidth: 120 }} size='small'>
-          <InputLabel>Fields</InputLabel>
-          <Select
-            value={selectedTitle}
-            onChange={handleTitleChange}
-            label='Fields'
-          >
-            {titles.map((title) => (
-              <MenuItem key={title} value={title}>
-                {title}
-              </MenuItem>
-            ))}
+        <FormControl size='small' style={{minWidth: 130}}>
+          <InputLabel>Time Range </InputLabel>
+          <Select>
+            <MenuItem>Daily</MenuItem>
+            <MenuItem>Weekly</MenuItem>
+            <MenuItem>Monthly</MenuItem>
           </Select>
-          {errorField && (
-            <FormHelperText sx={{ color: 'red' }}>
-              you sould select a field{' '}
-            </FormHelperText>
-          )}
-        </FormControl> */}
+        </FormControl>
+        <FormControl size='small' style={{minWidth: 110}}>
+          <InputLabel>Unit </InputLabel>
+          <Select>
+            <MenuItem>Gram</MenuItem>
+            <MenuItem>KG</MenuItem>
+            <MenuItem>Ton</MenuItem>
+          </Select>
+        </FormControl>
 
         <Button
           variant='contained'
@@ -124,7 +101,7 @@ const ChartCreation = () => {
           sx={{ height: '80%' }}
           variant='contained'
           onClick={handleSave}
-          disabled={!currentChart.type || !selectedTitle}
+          disabled={!currentChart.type}
         >
           Save
         </Button>

@@ -7,6 +7,7 @@ import {
   Line,
   LineChart,
   ResponsiveContainer,
+  LabelList
 } from 'recharts';
 import { Chart } from '../../types/chartTypes';
 import { useMemo } from 'react';
@@ -27,25 +28,28 @@ const LineChartComponent: React.FC<LineChartProps> = ({ chart }) => {
     }
     return chart.data.map((item) => ({
       ...item,
+      name: item.name ,
     }));
   }, [chart.data]);
+
   return (
     <ResponsiveContainer width='100%' height='100%'>
       <LineChart
         data={processedData}
-        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+        margin={{ top: 5, right: 30, left: 20, bottom: 50 }}
       >
         <CartesianGrid strokeDasharray='3 3' />
         {chart.orientation === 'vertical' ? (
           <>
-            <XAxis dataKey={chart.fields.xAxis} />
+            <XAxis dataKey='name' />
             <YAxis dataKey={chart.fields.yAxis} />
             <Line
               type='monotone'
-              dataKey='uv'
+              dataKey={chart.fields.yAxis}
               stroke='#82ca9d'
               activeDot={{ r: 8 }}
             />
+            <LabelList dataKey='name' position='top' />
           </>
         ) : (
           <>
@@ -56,15 +60,16 @@ const LineChartComponent: React.FC<LineChartProps> = ({ chart }) => {
             />
             <YAxis
               type='category'
-              dataKey={chart.fields.xAxis}
+              dataKey='name'
               axisLine={false}
             />
             <Line
               type='monotone'
-              dataKey='uv'
+              dataKey={chart.fields.yAxis}
               stroke='purple'
               activeDot={{ r: 8 }}
             />
+            <LabelList dataKey='name' position='right' />
           </>
         )}
         <Tooltip />
@@ -79,12 +84,6 @@ const LineChartComponent: React.FC<LineChartProps> = ({ chart }) => {
           stroke={chart.settings.color.pv}
           activeDot={{ r: 8 }}
         />
-        {/* <Line
-          type='monotone'
-          dataKey=
-          stroke='#82ca9d'
-          activeDot={{ r: 8 }}
-        /> */}
       </LineChart>
     </ResponsiveContainer>
   );
