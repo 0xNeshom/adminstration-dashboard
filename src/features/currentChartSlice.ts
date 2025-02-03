@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ChartType, Orientation, ChartFields } from '../types/chartTypes';
 import { Chart } from '../types/chartTypes';
-import {sampleData} from '../data/data';
+import {sampleData} from '../utils/data';
 const initialState: Chart = {
   id: Date.now().toString(),
   type: 'bar',

@@ -8,8 +8,8 @@ import {
   Cell,
   Sector,
 } from 'recharts';
-import { Chart } from '../../types/chartTypes';
-import CustomTooltip from './customToolTip/CustomTooltip';
+import { Chart } from '../../../types/chartTypes';
+import CustomTooltip from '../customToolTip/CustomTooltip';
 
 interface PieChartProps {
   chart: Chart;

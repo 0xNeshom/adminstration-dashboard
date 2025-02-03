@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Chart } from '../../types/chartTypes';
+import { Chart } from '../../../types/chartTypes';
 import {
   BarChart,
   CartesianGrid,
@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
   LabelList,
 } from 'recharts';
-import CustomTooltip from './customToolTip/CustomTooltip';
+import CustomTooltip from '../customToolTip/CustomTooltip';
 
 interface BarChartProps {
   chart: Chart;
@@ -57,12 +57,12 @@ const BarChartComponent: React.FC<BarChartProps> = ({ chart }) => {
           <>
             <XAxis type='category' dataKey='label' tick={{ fontSize: 12 }} />
             <YAxis type='number' style={{ fontSize: 12 }} />
-            <Bar dataKey='value' fill='#82ca9d' activeBar={{r:8}}>
+            <Bar dataKey='value' fill='#82ca9d' activeBar={{ r: 8 }}>
               <LabelList dataKey='name' position='top' />
             </Bar>
           </>
         )}
-               <Tooltip content={<CustomTooltip />} />
+        <Tooltip content={<CustomTooltip />} />
         {chart.settings?.showLegend && (
           <Legend
             content={({ payload }) => {

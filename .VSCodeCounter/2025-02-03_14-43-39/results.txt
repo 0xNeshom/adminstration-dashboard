@@ -1,0 +1,68 @@
+Date : 2025-02-03 14:43:39
+Directory : c:\Users\Mohse\OneDrive\Desktop\my-react-app\src
+Total : 26 files,  1254 codes, 263 comments, 144 blanks, all 1661 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| TypeScript JSX |         14 |        845 |        214 |         86 |      1,145 |
+| TypeScript     |          8 |        247 |         47 |         36 |        330 |
+| CSS            |          3 |        161 |          2 |         22 |        185 |
+| XML            |          1 |          1 |          0 |          0 |          1 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                      | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                         |         26 |      1,254 |        263 |        144 |      1,661 |
+| . (Files)                                                                                                 |          5 |        218 |          1 |         25 |        244 |
+| assets                                                                                                    |          1 |          1 |          0 |          0 |          1 |
+| components                                                                                                |         13 |        788 |        216 |         84 |      1,088 |
+| components\charts                                                                                         |          6 |        557 |         27 |         44 |        628 |
+| components\charts (Files)                                                                                 |          3 |        367 |         12 |         26 |        405 |
+| components\charts\chartsContainer                                                                         |          1 |        109 |         13 |          5 |        127 |
+| components\charts\customToolTip                                                                           |          2 |         81 |          2 |         13 |         96 |
+| components\creation                                                                                       |          6 |        187 |        186 |         34 |        407 |
+| components\creation (Files)                                                                               |          5 |         63 |        184 |         22 |        269 |
+| components\creation\creationContainer                                                                     |          1 |        124 |          2 |         12 |        138 |
+| components\layout                                                                                         |          1 |         44 |          3 |          6 |         53 |
+| data                                                                                                      |          2 |         51 |          0 |          3 |         54 |
+| features                                                                                                  |          2 |        138 |         16 |         16 |        170 |
+| store                                                                                                     |          2 |         15 |          0 |          3 |         18 |
+| types                                                                                                     |          1 |         43 |         30 |         13 |         86 |
++-----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                                  | language       | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\App.css                                                  | CSS            |         37 |          0 |          6 |         43 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\App.tsx                                                  | TypeScript JSX |        107 |          0 |          8 |        115 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\assets\react.svg                                         | XML            |          1 |          0 |          0 |          1 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\charts\BarChartComponent.tsx                  | TypeScript JSX |         90 |         11 |          6 |        107 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\charts\LineChartComponent.tsx                 | TypeScript JSX |        101 |          0 |          6 |        107 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\charts\PieChartComponent.tsx                  | TypeScript JSX |        176 |          1 |         14 |        191 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\charts\chartsContainer\ChartItem.tsx          | TypeScript JSX |        109 |         13 |          5 |        127 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\charts\customToolTip\CustomTooltip.module.css | CSS            |         63 |          2 |          8 |         73 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\charts\customToolTip\CustomTooltip.tsx        | TypeScript JSX |         18 |          0 |          5 |         23 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\creation\ChartInput.tsx                       | TypeScript JSX |         33 |          0 |          2 |         35 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\creation\CustomizableChart .tsx               | TypeScript JSX |          0 |         90 |          8 |         98 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\creation\CustomizeColor.tsx                   | TypeScript JSX |          0 |         59 |          4 |         63 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\creation\FieldsInput.tsx                      | TypeScript JSX |          0 |         35 |          3 |         38 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\creation\OrientationInput.tsx                 | TypeScript JSX |         30 |          0 |          5 |         35 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\creation\creationContainer\ChartCreation.tsx  | TypeScript JSX |        124 |          2 |         12 |        138 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\layout\ChartLayout.tsx                        | TypeScript JSX |         44 |          3 |          6 |         53 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\data\data.ts                                             | TypeScript     |         45 |          0 |          2 |         47 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\data\data.types.ts                                       | TypeScript     |          6 |          0 |          1 |          7 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\features\chartsSlice.ts                                  | TypeScript     |         46 |          0 |          4 |         50 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\features\currentChartSlice.ts                            | TypeScript     |         92 |         16 |         12 |        120 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\index.css                                                | CSS            |         61 |          0 |          8 |         69 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\main.tsx                                                 | TypeScript JSX |         13 |          0 |          2 |         15 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\store\hooks.ts                                           | TypeScript     |          4 |          0 |          1 |          5 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\store\store.ts                                           | TypeScript     |         11 |          0 |          2 |         13 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\types\chartTypes.ts                                      | TypeScript     |         43 |         30 |         13 |         86 |
+| c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\vite-env.d.ts                                            | TypeScript     |          0 |          1 |          1 |          2 |
+| Total                                                                                                     |                |      1,254 |        263 |        144 |      1,661 |
++-----------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

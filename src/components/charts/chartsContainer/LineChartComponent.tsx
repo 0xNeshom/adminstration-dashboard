@@ -1,8 +1,17 @@
-import {CartesianGrid, XAxis,YAxis,Tooltip,Legend,Line, LineChart, ResponsiveContainer, LabelList,
+import {
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  LabelList,
 } from 'recharts';
-import { Chart } from '../../types/chartTypes';
+import { Chart } from '../../../types/chartTypes';
 import { useMemo } from 'react';
-import CustomTooltip from './customToolTip/CustomTooltip';
+import CustomTooltip from '../customToolTip/CustomTooltip';
 
 interface LineChartProps {
   chart: Chart;

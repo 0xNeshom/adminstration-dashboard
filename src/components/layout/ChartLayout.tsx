@@ -1,13 +1,13 @@
 // import { useSelector } from 'react-redux';
 // import { RootState } from '../../store/store';
 import { removeChart, saveCharts } from '../../features/chartsSlice';
-import ChartCreation from '../creation/creationContainer/ChartCreation';
+import ChartCreation from '../creation/ChartCreation';
 import { Box } from '@mui/material';
 import { Chart } from '../../types/chartTypes';
-import LineChartComponent from '../charts/LineChartComponent';
-import BarChartComponent from '../charts/BarChartComponent';
-import PieChartComponent from '../charts/PieChartComponent';
-import ChartItem from '../charts/chartsContainer/ChartItem';
+import LineChartComponent from '../charts/chartsContainer/LineChartComponent';
+import BarChartComponent from '../charts/chartsContainer/BarChartComponent';
+import PieChartComponent from '../charts/chartsContainer/PieChartComponent';
+import ChartItem from '../charts/ChartItem';
 import { useAppDispatch } from '../../store/hooks';
 import { useAppSelector } from '../../store/hooks';
 // import CustomizableChart from '../components/charts/creation/CustomizableChart ';

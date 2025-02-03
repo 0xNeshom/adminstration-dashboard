@@ -7,14 +7,15 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { setChartOrientation } from '../../features/currentChartSlice';
-import { Orientation } from '../../types/chartTypes';
+import { RootState } from '../../../../store/store';
+import { setChartOrientation } from '../../../../features/currentChartSlice';
+import { Orientation } from '../../../../types/chartTypes';
 
 const OrientationInput: React.FC = () => {
   const dispatch = useDispatch();
   const orientation = useSelector(
-    (state: RootState) => state.currentChart.orientation);
+    (state: RootState) => state.currentChart.orientation
+  );
 
   const handleChange = (event: SelectChangeEvent<Orientation>) => {
     dispatch(setChartOrientation(event.target.value as Orientation));
