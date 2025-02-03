@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ChartType, Orientation, ChartFields } from '../types/chartTypes';
 import { Chart } from '../types/chartTypes';
 import {sampleData} from '../data/data';
-import { DataItem } from '../data/data.types';
 const initialState: Chart = {
   id: Date.now().toString(),
   type: 'bar',
@@ -53,15 +52,15 @@ const currentChartSlice = createSlice({
           case 'gram' : return value * 1000;
           case 'ton' :return value / 1000;
           default: return value
-        }
-        const groupedData :Record<string, number[]> = {};
+        }};
+        const groupedData :Record<string, number> = {};
         state.data.forEach((item) => {
           const date =new Date(item.date);
           let key :string =''
 
           switch(state.timeRange) {
             case 'daily':
-              key = date.toLocaleDateString('fa-IR');
+              key = date.toISOString().split('T')[0];
               break;
               
             case 'monthly':
@@ -79,7 +78,13 @@ const currentChartSlice = createSlice({
           
           groupedData[key] += convertUnit(item.quantity);
         });
-    }
+  
+        state.processedData = Object.entries(groupedData).map(([label, value]) => ({
+          label,
+          value: Number(value.toFixed(2))
+        }));
+      },
+    },
     // updateChartSettings: (
     //   state,
     //   action: PayloadAction<Partial<Chart['settings']>>
@@ -92,12 +97,15 @@ const currentChartSlice = createSlice({
     // updateSelectedFields: (state, action: PayloadAction<Partial<Chart['selectedFields']>>) => {
     //   state.selectedFields = { ...state.selectedFields, ...action.payload };
     // },
-  },
 });
 
 export const {
   setChartType,
   setChartOrientation,
+  processedChartData,
+  setTimeRange,
+  setUnit,
+  updateChartFields
   // updateChartFields,
   // updateChartSettings,
   // updateChartData,

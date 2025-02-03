@@ -7,7 +7,7 @@ import {
   Line,
   LineChart,
   ResponsiveContainer,
-  LabelList
+  LabelList,
 } from 'recharts';
 import { Chart } from '../../types/chartTypes';
 import { useMemo } from 'react';
@@ -17,63 +17,85 @@ interface LineChartProps {
 }
 
 const LineChartComponent: React.FC<LineChartProps> = ({ chart }) => {
-  /**
-   * Memoizes and processes chart data array.
-   * Returns empty array if data is invalid or non-array.
-   * Creates shallow copy of each data item.
-   */
+  const isHorizontal = chart.orientation === 'horizontal';
+
   const processedData = useMemo(() => {
-    if (!chart.data || !Array.isArray(chart.data)) {
+    if (!chart.processedData || !Array.isArray(chart.processedData)) {
       return [];
     }
-    return chart.data.map((item) => ({
-      ...item,
-      name: item.name ,
-    }));
-  }, [chart.data]);
+    return chart.processedData;
+  }, [chart.processedData]);
 
   return (
     <ResponsiveContainer width='100%' height='100%'>
       <LineChart
+        layout={isHorizontal ? 'vertical' : 'horizontal'}
         data={processedData}
-        margin={{ top: 5, right: 30, left: 20, bottom: 50 }}
+        margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
       >
         <CartesianGrid strokeDasharray='3 3' />
-        {chart.orientation === 'vertical' ? (
+        {isHorizontal ? (
           <>
-            <XAxis dataKey='name' />
-            <YAxis dataKey={chart.fields.yAxis} />
+            <XAxis
+              type='category'
+              dataKey='value'
+              axisLine={false}
+              tick={{ fontSize: 12 }}
+            />
+            <YAxis
+              style={{ fontSize: 12 }}
+              type='category'
+              dataKey='label'
+              axisLine={false}
+            />
             <Line
-              type='monotone'
-              dataKey={chart.fields.yAxis}
+              type='linear'
+              dataKey='value'
+              stroke='#82ca9d'
+              activeDot={{ r: 8 }}
+            />
+            <LabelList dataKey='label' position='right' />
+          </>
+        ) : (
+          <>
+            <XAxis type='category' dataKey='label' style={{ fontSize: 12 }}/>
+            <YAxis dataKey='value' style={{ fontSize: 12 }}/>
+            <Line
+              type='linear'
+              dataKey='value'
               stroke='#82ca9d'
               activeDot={{ r: 8 }}
             />
             <LabelList dataKey='name' position='top' />
           </>
-        ) : (
-          <>
-            <XAxis
-              type='number'
-              dataKey={chart.fields.yAxis}
-              axisLine={false}
-            />
-            <YAxis
-              type='category'
-              dataKey='name'
-              axisLine={false}
-            />
-            <Line
-              type='monotone'
-              dataKey={chart.fields.yAxis}
-              stroke='purple'
-              activeDot={{ r: 8 }}
-            />
-            <LabelList dataKey='name' position='right' />
-          </>
         )}
         <Tooltip />
-        {chart.settings.showLegend && <Legend />}
+        {chart.settings?.showLegend && (
+          <Legend
+            content={({ payload }) => (
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  fontSize: '14px',
+                  padding: '5px',
+                }}
+              >
+                <span style={{ fontWeight: 'bold', marginBottom: '5px' }}>
+                  Time Range: {chart.timeRange}
+                </span>
+                <div style={{ display: 'flex', gap: '10px' }}>
+                  {payload?.map((entry, index) => (
+                    <span key={index} style={{ color: entry.color }}>
+                      {entry.value}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          />
+        )}
         <Line
           type='monotone'
           dataKey={
@@ -81,7 +103,7 @@ const LineChartComponent: React.FC<LineChartProps> = ({ chart }) => {
               ? chart.fields.yAxis
               : chart.fields.xAxis
           }
-          stroke={chart.settings.color.pv}
+          stroke={chart.settings?.color.pv}
           activeDot={{ r: 8 }}
         />
       </LineChart>

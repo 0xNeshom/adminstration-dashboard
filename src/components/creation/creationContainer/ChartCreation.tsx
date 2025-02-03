@@ -10,10 +10,15 @@ import {
 } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import { addChart, saveCharts } from '../../../features/chartsSlice';
-import { setChartType } from '../../../features/currentChartSlice';
+import {
+  processedChartData,
+  setChartType,
+  setTimeRange,
+  setUnit,
+} from '../../../features/currentChartSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
-import { useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { Chart, ChartType } from '../../../types/chartTypes';
 import OrientationInput from '../OrientationInput';
 import ChartInput from '../ChartInput';
@@ -25,6 +30,11 @@ const ChartCreation: React.FC = () => {
   // const [yAxisValue, setYAxisValue] = useState<string>('');
   const dispatch = useAppDispatch();
   const currentChart = useSelector((state: RootState) => state.currentChart);
+
+  useEffect(() => {
+    dispatch(processedChartData());
+  }, [currentChart.unit, currentChart.timeRange, dispatch]);
+
 
   const handleCreate = () => {
     if (!currentChart.type) {
@@ -39,10 +49,10 @@ const ChartCreation: React.FC = () => {
       fields: currentChart.fields,
       settings: currentChart.settings,
       position: currentChart.position,
-      data: [],
-      processedData: [],
-      timeRange: 'monthly',
-      unit: 'kg',
+      data: currentChart.data,
+      processedData: currentChart.processedData,
+      timeRange: currentChart.timeRange,
+      unit: currentChart.unit,
     };
     dispatch(addChart(newChart));
     setError(false);
@@ -73,20 +83,32 @@ const ChartCreation: React.FC = () => {
         <Divider orientation='vertical' />
         <OrientationInput />
         <ChartInput error={error} handleChart={handleChartTypeChange} />
-        <FormControl size='small' style={{minWidth: 130}}>
+        <FormControl size='small' style={{ minWidth: 130 }}>
           <InputLabel>Time Range </InputLabel>
-          <Select>
-            <MenuItem>Daily</MenuItem>
-            <MenuItem>Weekly</MenuItem>
-            <MenuItem>Monthly</MenuItem>
+          <Select
+            value={currentChart.timeRange}
+            onChange={(e) =>
+              dispatch(
+                setTimeRange(e.target.value as 'daily' | 'monthly' | 'yearly')
+              )
+            }
+          >
+            <MenuItem value='monthly'>Monthly</MenuItem>
+            <MenuItem value='yearly'>yearly</MenuItem>
+            <MenuItem value='daily'>Daily</MenuItem>
           </Select>
         </FormControl>
-        <FormControl size='small' style={{minWidth: 110}}>
+        <FormControl size='small' style={{ minWidth: 110 }}>
           <InputLabel>Unit </InputLabel>
-          <Select>
-            <MenuItem>Gram</MenuItem>
-            <MenuItem>KG</MenuItem>
-            <MenuItem>Ton</MenuItem>
+          <Select
+            value={currentChart.unit}
+            onChange={(e) =>
+              dispatch(setUnit(e.target.value as 'gram' | 'kg' | 'ton'))
+            }
+          >
+            <MenuItem value='kg'> kg</MenuItem>
+            <MenuItem value='gram'>gram</MenuItem>
+            <MenuItem value='ton'>Ton</MenuItem>
           </Select>
         </FormControl>
 

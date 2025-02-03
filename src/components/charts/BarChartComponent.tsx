@@ -18,44 +18,75 @@ interface BarChartProps {
 
 const BarChartComponent: React.FC<BarChartProps> = ({ chart }) => {
   const isHorizontal = chart.orientation === 'horizontal';
-  
+
   const processedData = useMemo(() => {
-    if (!chart.data || !Array.isArray(chart.data)) {
+    if (!chart.processedData || !Array.isArray(chart.processedData)) {
       return [];
     }
-    return chart.data.map((item) => ({
-      ...item,
-      name: item.name
-    }));
-  }, [chart.data]);
+    return chart.processedData;
+  }, [chart.processedData]);
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width='100%' height='100%'>
       <BarChart
         layout={isHorizontal ? 'vertical' : 'horizontal'}
         data={processedData}
-        margin={{ top: 5, right: 30, left: 20, bottom: 50 }} 
+        margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray='3 3' />
         {isHorizontal ? (
           <>
-            <XAxis type="number" dataKey={chart.fields.yAxis} />
-            <YAxis type="category" dataKey="name" />
-            <Bar dataKey={chart.fields.yAxis} fill="#2973B2">
-              <LabelList dataKey="name" position="right" />
+            <XAxis type='category' dataKey='value' tick={{ fontSize: 12 }} />
+            <YAxis type='category' dataKey='label' style={{ fontSize: 12 }} />
+            <Bar dataKey='value' fill='black' stroke='#82ca9d'>
+              <LabelList dataKey='label' position='right' />
             </Bar>
           </>
         ) : (
           <>
-            <XAxis type="category" dataKey="name" tick={{ fontSize: 12 }} />
-            <YAxis type="number" />
-            <Bar dataKey={chart.fields.yAxis} fill={chart.settings.color.uv}>
-              <LabelList dataKey="name" position="top" />
+            <XAxis type='category' dataKey='label' tick={{ fontSize: 12 }} />
+            <YAxis type='number' style={{ fontSize: 12 }} />
+            <Bar dataKey='value' fill='#82ca9d' activeBar={{r:8}}>
+              <LabelList dataKey='name' position='top' />
             </Bar>
           </>
         )}
         <Tooltip />
-        {chart.settings.showLegend && <Legend />}
+        {chart.settings?.showLegend && (
+          <Legend
+            content={({ payload }) => {
+              if (!payload || payload.length === 0) return null;
+
+              return (
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    fontSize: '14px',
+                    padding: '5px',
+                  }}
+                >
+                  <span style={{ fontWeight: 'bold', marginBottom: '5px' }}>
+                    Time Range: {chart.timeRange}
+                  </span>
+                  <div style={{ display: 'flex', gap: '10px' }}>
+                    {payload.map((entry, index) => {
+                      const matchedData = chart.processedData.find(
+                        (data) => data.label === entry.value
+                      );
+                      return (
+                        <span key={index} style={{ color: entry.color }}>
+                          {entry.value} ({matchedData?.value ?? 'N/A'})
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            }}
+          />
+        )}
       </BarChart>
     </ResponsiveContainer>
   );
