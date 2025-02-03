@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { Rnd } from 'react-rnd';
-import { Box, Button, Collapse, Divider, Paper } from '@mui/material';
+import {
+  Box,
+  Button,
+  Collapse,
+  Divider,
+  Paper,
+} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
@@ -87,6 +93,7 @@ const ChartItem: React.FC<ChartItemProps> = ({
                 onClick={() => handleDelete(chart.id)}
               />
 
+              
               <Divider orientation='vertical' />
               <ReusableIconButton
                 icon={<SwapVertIcon />}
