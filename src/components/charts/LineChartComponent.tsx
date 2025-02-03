@@ -1,16 +1,8 @@
-import {
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  LabelList,
+import {CartesianGrid, XAxis,YAxis,Tooltip,Legend,Line, LineChart, ResponsiveContainer, LabelList,
 } from 'recharts';
 import { Chart } from '../../types/chartTypes';
 import { useMemo } from 'react';
+import CustomTooltip from './customToolTip/CustomTooltip';
 
 interface LineChartProps {
   chart: Chart;
@@ -58,8 +50,8 @@ const LineChartComponent: React.FC<LineChartProps> = ({ chart }) => {
           </>
         ) : (
           <>
-            <XAxis type='category' dataKey='label' style={{ fontSize: 12 }}/>
-            <YAxis dataKey='value' style={{ fontSize: 12 }}/>
+            <XAxis type='category' dataKey='label' style={{ fontSize: 12 }} />
+            <YAxis dataKey='value' style={{ fontSize: 12 }} />
             <Line
               type='linear'
               dataKey='value'
@@ -69,7 +61,7 @@ const LineChartComponent: React.FC<LineChartProps> = ({ chart }) => {
             <LabelList dataKey='name' position='top' />
           </>
         )}
-        <Tooltip />
+        <Tooltip content={<CustomTooltip />} />
         {chart.settings?.showLegend && (
           <Legend
             content={({ payload }) => (

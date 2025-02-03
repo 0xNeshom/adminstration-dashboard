@@ -49,18 +49,20 @@ export interface Chart {
   data: ChartData;
   timeRange: TimeRange;
   unit: Unit;
-  processedData: ProcessedChartData[];
+  processedData:  { label: string; value: number; product: string }[];
 }
 
-export interface ProcessedChartData {
-  label: string;
-  value: number;
-}
+// export interface ProcessedChartData {
+//   label: string;
+//   value: number;
+//   product?: string;
+// }
 
 export type ChartData = Array<{
   date: string;
   quantity: number;
   unit: 'kg';
+  product:string;
 }>;
 // export interface ChartValue {
 //   name:string;

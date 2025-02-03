@@ -1,5 +1,5 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+// import { useSelector } from 'react-redux';
+// import { RootState } from '../../store/store';
 import { removeChart, saveCharts } from '../../features/chartsSlice';
 import ChartCreation from '../creation/creationContainer/ChartCreation';
 import { Box } from '@mui/material';
@@ -9,10 +9,11 @@ import BarChartComponent from '../charts/BarChartComponent';
 import PieChartComponent from '../charts/PieChartComponent';
 import ChartItem from '../charts/chartsContainer/ChartItem';
 import { useAppDispatch } from '../../store/hooks';
+import { useAppSelector } from '../../store/hooks';
 // import CustomizableChart from '../components/charts/creation/CustomizableChart ';
 
 const ChartLayout: React.FC = () => {
-  const charts = useSelector((state: RootState) => state.charts.charts);
+  const charts = useAppSelector((state) => state.charts.charts);
   const dispatch = useAppDispatch();
 
   const handleDelete = async (chartId: string) => {

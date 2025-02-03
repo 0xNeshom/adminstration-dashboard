@@ -53,6 +53,7 @@ const ChartCreation: React.FC = () => {
       processedData: currentChart.processedData,
       timeRange: currentChart.timeRange,
       unit: currentChart.unit,
+      
     };
     dispatch(addChart(newChart));
     setError(false);

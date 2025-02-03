@@ -23,7 +23,8 @@ const initialState: Chart = {
   data: sampleData ,
   timeRange: 'monthly',
   processedData: [],
-  unit: 'kg'
+  unit: 'kg',
+  
 };
 
 const currentChartSlice = createSlice({
@@ -79,26 +80,18 @@ const currentChartSlice = createSlice({
           groupedData[key] += convertUnit(item.quantity);
         });
   
-        state.processedData = Object.entries(groupedData).map(([label, value]) => ({
-          label,
-          value: Number(value.toFixed(2))
-        }));
+        state.processedData = Object.entries(groupedData).map(([label, value]) => {
+          const product = state.data.length > 0 ? state.data[0].product : '';
+          return {
+            label,
+            value: Number(value.toFixed(2)),
+            product
+          };
+        });
       },
     },
-    // updateChartSettings: (
-    //   state,
-    //   action: PayloadAction<Partial<Chart['settings']>>
-    // ) => {
-    //   state.settings = { ...state.settings, ...action.payload };
-    // },
-    // updateChartData: (state, action: PayloadAction<Chart['data']>) => {
-    //   state.data = action.payload;
-    // },
-    // updateSelectedFields: (state, action: PayloadAction<Partial<Chart['selectedFields']>>) => {
-    //   state.selectedFields = { ...state.selectedFields, ...action.payload };
-    // },
-});
-
+  });
+  
 export const {
   setChartType,
   setChartOrientation,
@@ -112,3 +105,16 @@ export const {
   // updateSelectedFields
 } = currentChartSlice.actions;
 export default currentChartSlice.reducer;
+
+// updateChartSettings: (
+//   state,
+//   action: PayloadAction<Partial<Chart['settings']>>
+// ) => {
+//   state.settings = { ...state.settings, ...action.payload };
+// },
+// updateChartData: (state, action: PayloadAction<Chart['data']>) => {
+//   state.data = action.payload;
+// },
+// updateSelectedFields: (state, action: PayloadAction<Partial<Chart['selectedFields']>>) => {
+//   state.selectedFields = { ...state.selectedFields, ...action.payload };
+// },

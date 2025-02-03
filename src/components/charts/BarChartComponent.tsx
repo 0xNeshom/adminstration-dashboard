@@ -11,11 +11,22 @@ import {
   ResponsiveContainer,
   LabelList,
 } from 'recharts';
+import CustomTooltip from './customToolTip/CustomTooltip';
 
 interface BarChartProps {
   chart: Chart;
 }
-
+// const CustomTooltip = ({ active, payload, label }: any) => {
+//   if (active && payload && payload.length) {
+//     return (
+//       <div className="bg-white p-2 border border-gray-200 rounded shadow-lg">
+//         <p className="text-sm font-medium">{`نام: ${payload[0].payload.label}`}</p>
+//         <p className="text-sm">{`مقدار: ${payload[0].value}`}</p>
+//       </div>
+//     );
+//   }
+//   return null;
+// };
 const BarChartComponent: React.FC<BarChartProps> = ({ chart }) => {
   const isHorizontal = chart.orientation === 'horizontal';
 
@@ -51,7 +62,7 @@ const BarChartComponent: React.FC<BarChartProps> = ({ chart }) => {
             </Bar>
           </>
         )}
-        <Tooltip />
+               <Tooltip content={<CustomTooltip />} />
         {chart.settings?.showLegend && (
           <Legend
             content={({ payload }) => {
