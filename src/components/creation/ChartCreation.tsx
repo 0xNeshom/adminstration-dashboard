@@ -1,7 +1,9 @@
 import { Box, SelectChangeEvent, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import { addChart, saveCharts } from '../../features/chartsSlice';
-import {processedChartData,setChartType,
+import {
+  processedChartData,
+  setChartType,
 } from '../../features/currentChartSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
@@ -13,7 +15,8 @@ import { useAppDispatch } from '../../store/hooks';
 import TimeRange from './container/inputs/TimeRange';
 import UnitInput from './container/inputs/UnitInput';
 import ReusableButton from '../ui/ReusableButton';
-
+import { exportFromLocalStorage } from '../../features/exportThunks';
+import ImportChart from './container/ImportChart';
 const ChartCreation: React.FC = () => {
   const [error, setError] = useState<boolean>(false);
   const dispatch = useAppDispatch();
@@ -53,10 +56,21 @@ const ChartCreation: React.FC = () => {
     dispatch(saveCharts());
   };
 
+  const handleExport =()=>{
+    dispatch(exportFromLocalStorage())
+  }
+
   return (
     <>
       <Box
-        style={{display: 'flex',width: '100%',height: '50px',gap: '10px',alignItems: 'center',}} >
+        style={{
+          display: 'flex',
+          width: '100%',
+          height: '50px',
+          gap: '10px',
+          alignItems: 'center',
+        }}
+      >
         <Typography sx={{ fontSize: '1rem', fontWeight: 'bold' }}>
           Chart Creation
         </Typography>
@@ -65,12 +79,23 @@ const ChartCreation: React.FC = () => {
         <ChartInput error={error} handleChart={handleChartTypeChange} />
         <TimeRange error={error} />
         <UnitInput error={error} />
-        <ReusableButton size='medium' variant='contained' onClick={handleCreate}>
+        <ReusableButton
+          size='medium'
+          variant='contained'
+          onClick={handleCreate}
+        >
           Create
         </ReusableButton>
-        <ReusableButton size='medium' variant='contained' onClick={handleSave} disabled={!currentChart.type}>
+        <ReusableButton
+          size='medium'
+          variant='contained'
+          onClick={handleSave}
+          disabled={!currentChart.type}
+        >
           Save
         </ReusableButton>
+        <ReusableButton size='medium' variant='contained' onClick={handleExport}>Export Chart</ReusableButton>
+        <ImportChart/>
       </Box>
       <Divider orientation='horizontal' sx={{ marginTop: '10px' }} />
     </>

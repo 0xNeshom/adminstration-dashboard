@@ -1,0 +1,32 @@
+"filename", "language", "TypeScript", "CSS", "TypeScript JSX", "XML", "comment", "blank", "total"
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\App.css", "CSS", 0, 37, 0, 0, 0, 6, 43
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\App.tsx", "TypeScript JSX", 0, 0, 107, 0, 0, 8, 115
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\assets\react.svg", "XML", 0, 0, 0, 1, 0, 0, 1
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\charts\ChartItem.tsx", "TypeScript JSX", 0, 0, 105, 0, 0, 7, 112
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\charts\chartsContainer\BarChartComponent.tsx", "TypeScript JSX", 0, 0, 90, 0, 11, 6, 107
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\charts\chartsContainer\LineChartComponent.tsx", "TypeScript JSX", 0, 0, 110, 0, 0, 6, 116
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\charts\chartsContainer\PieChartComponent.tsx", "TypeScript JSX", 0, 0, 176, 0, 1, 14, 191
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\charts\customToolTip\CustomTooltip.module.css", "CSS", 0, 63, 0, 0, 2, 8, 73
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\charts\customToolTip\CustomTooltip.tsx", "TypeScript JSX", 0, 0, 18, 0, 0, 5, 23
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\creation\ChartCreation.tsx", "TypeScript JSX", 0, 0, 72, 0, 0, 9, 81
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\creation\container\CustomizableChart .tsx", "TypeScript JSX", 0, 0, 0, 0, 90, 8, 98
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\creation\container\CustomizeColor.tsx", "TypeScript JSX", 0, 0, 0, 0, 59, 4, 63
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\creation\container\inputs\ChartInput.tsx", "TypeScript JSX", 0, 0, 37, 0, 0, 6, 43
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\creation\container\inputs\FieldsInput.tsx", "TypeScript JSX", 0, 0, 0, 0, 35, 3, 38
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\creation\container\inputs\OrientationInput.tsx", "TypeScript JSX", 0, 0, 31, 0, 0, 5, 36
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\creation\container\inputs\TimeRange.tsx", "TypeScript JSX", 0, 0, 40, 0, 0, 3, 43
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\creation\container\inputs\UnitInput.tsx", "TypeScript JSX", 0, 0, 34, 0, 0, 3, 37
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\layout\ChartLayout.tsx", "TypeScript JSX", 0, 0, 44, 0, 3, 6, 53
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\ui\ReusableButton.tsx", "TypeScript JSX", 0, 0, 8, 0, 0, 4, 12
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\components\ui\ReusableIconButton.tsx", "TypeScript JSX", 0, 0, 30, 0, 0, 4, 34
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\features\chartsSlice.ts", "TypeScript", 46, 0, 0, 0, 0, 4, 50
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\features\currentChartSlice.ts", "TypeScript", 92, 0, 0, 0, 16, 12, 120
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\index.css", "CSS", 0, 61, 0, 0, 0, 8, 69
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\main.tsx", "TypeScript JSX", 0, 0, 13, 0, 0, 2, 15
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\store\hooks.ts", "TypeScript", 4, 0, 0, 0, 0, 1, 5
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\store\store.ts", "TypeScript", 11, 0, 0, 0, 0, 2, 13
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\types\chartTypes.ts", "TypeScript", 43, 0, 0, 0, 30, 13, 86
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\utils\data.ts", "TypeScript", 45, 0, 0, 0, 0, 2, 47
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\utils\data.types.ts", "TypeScript", 6, 0, 0, 0, 0, 1, 7
+"c:\Users\Mohse\OneDrive\Desktop\my-react-app\src\vite-env.d.ts", "TypeScript", 0, 0, 0, 0, 1, 1, 2
+"Total", "-", 247, 161, 915, 1, 248, 161, 1733
