@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Chart } from '../types/chartTypes';
 import { importChartFromJSON } from './importThunks';
 interface ChartsState {
   charts: Chart[];
-  status?: "idle" | "loading" | "succeeded" | "failed";
+  status?: 'idle' | 'loading' | 'succeeded' | 'failed';
   error?: string | null;
 }
 
@@ -39,6 +40,7 @@ const chartsSlice = createSlice({
           chart.orientation === 'vertical' ? 'horizontal' : 'vertical';
       }
     },
+    
   },
   extraReducers: (builder) => {
     builder
@@ -48,12 +50,11 @@ const chartsSlice = createSlice({
       })
       .addCase(importChartFromJSON.fulfilled, (state, action: PayloadAction<Chart[]>) => {
         state.status = "succeeded";
-        // فرض می‌کنیم که می‌خوایم داده‌های جدید رو جایگزین کنیم
         state.charts = action.payload;
       })
       .addCase(importChartFromJSON.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.payload ? action.payload : "خطایی رخ داده!";
+        state.error = action.payload ? action.payload : "Error";
       });
   },
 });
@@ -64,5 +65,6 @@ export const {
   saveCharts,
   loadCharts,
   toggleChartOrientation,
+  // editChartColor,
 } = chartsSlice.actions;
 export default chartsSlice.reducer;

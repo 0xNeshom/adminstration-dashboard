@@ -30,8 +30,9 @@ export interface ChartSettings {
   showLegend: boolean;
   showGrid: boolean;
   color: {
-    pv: string;
-    uv: string;
+    main: string;
+    secondary: string, 
+    tertiary:string;
   };
 }
 
@@ -45,7 +46,7 @@ export interface Chart {
   position: Position;
   size?: Size;
   fields: ChartFields;
-  settings?: ChartSettings;
+  settings: ChartSettings;
   data: ChartData;
   timeRange: TimeRange;
   unit: Unit;

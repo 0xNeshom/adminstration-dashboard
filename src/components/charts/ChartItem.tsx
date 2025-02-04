@@ -6,9 +6,11 @@ import SwapVertIcon from '@mui/icons-material/SwapVert';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { ResponsiveContainer } from 'recharts';
 import { Chart } from '../../types/chartTypes';
-import { toggleChartOrientation } from '../../features/chartsSlice';
+// import { editChartColor, toggleChartOrientation } from '../../features/chartsSlice';
 import { useAppDispatch } from '../../store/hooks';
 import ReusableIconButton from '../ui/ReusableIconButton';
+import { toggleChartOrientation } from '../../features/chartsSlice';
+import ColorPicker from './ColorPicker';
 
 interface ChartItemProps {
   chart: Chart;
@@ -23,7 +25,15 @@ const ChartItem: React.FC<ChartItemProps> = ({
 }) => {
   const dispatch = useAppDispatch();
   const [isPanelOpen, setIsPanelOpen] = useState<boolean>(false);
+  // const colorPalette = ['#FF5733', '#33FF57', '#3357FF'];
 
+  // const handleColorChange = () => {
+  //   const currentColor = chart.settings?.color.pv;
+  //   const currentIndex = colorPalette.findIndex(color => color === currentColor);
+  //   const nextIndex = (currentIndex + 1) % colorPalette.length;
+  //   const newColor = colorPalette[nextIndex];
+  //   dispatch(editChartColor({ id: chart.id, color: newColor }));
+  // };
   return (
     <Rnd
       default={{
@@ -92,11 +102,12 @@ const ChartItem: React.FC<ChartItemProps> = ({
                 icon={<SwapVertIcon />}
                 onClick={() => dispatch(toggleChartOrientation(chart.id))}
               />
+             <ColorPicker chartId={chart.id}/>
             </Paper>
           </Collapse>
         </Button>
         <ResponsiveContainer>{renderChart(chart) || <></>}</ResponsiveContainer>
-      </Box>
+      </Box> 
     </Rnd>
   );
 };
