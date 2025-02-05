@@ -32,7 +32,7 @@ const LineChartComponent: React.FC<LineChartProps> = ({ chart }) => {
       <LineChart
         layout={isHorizontal ? 'vertical' : 'horizontal'}
         data={processedData}
-        margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
+        margin={{ top: 10, right: 30, left: 20, bottom: 10 }}
       >
         <CartesianGrid strokeDasharray='3 3' />
         {isHorizontal ? (

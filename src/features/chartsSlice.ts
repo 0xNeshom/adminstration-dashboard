@@ -53,6 +53,16 @@ const chartsSlice = createSlice({
           chart.orientation === 'vertical' ? 'horizontal' : 'vertical';
       }
     },
+    updateChartPosition: (
+      state,
+      action: PayloadAction<{ id: string; position: { x: number; y: number } }>
+    ) => {
+      const { id, position } = action.payload;
+      const chart = state.charts.find((chart) => chart.id === id);
+      if (chart) {
+        chart.position = position;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -81,5 +91,6 @@ export const {
   loadCharts,
   toggleChartOrientation,
   updateChartColor,
+  updateChartPosition,
 } = chartsSlice.actions;
 export default chartsSlice.reducer;

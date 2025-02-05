@@ -16,17 +16,7 @@ import CustomTooltip from '../customToolTip/CustomTooltip';
 interface BarChartProps {
   chart: Chart;
 }
-// const CustomTooltip = ({ active, payload, label }: any) => {
-//   if (active && payload && payload.length) {
-//     return (
-//       <div className="bg-white p-2 border border-gray-200 rounded shadow-lg">
-//         <p className="text-sm font-medium">{`نام: ${payload[0].payload.label}`}</p>
-//         <p className="text-sm">{`مقدار: ${payload[0].value}`}</p>
-//       </div>
-//     );
-//   }
-//   return null;
-// };
+
 const BarChartComponent: React.FC<BarChartProps> = ({ chart }) => {
   const isHorizontal = chart.orientation === 'horizontal';
 
@@ -42,7 +32,7 @@ const BarChartComponent: React.FC<BarChartProps> = ({ chart }) => {
       <BarChart
         layout={isHorizontal ? 'vertical' : 'horizontal'}
         data={processedData}
-        margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
+        margin={{ top: 10, right: 30, left: 20, bottom: 10 }}
       >
         <CartesianGrid strokeDasharray='3 3' />
         {isHorizontal ? (

@@ -10,7 +10,7 @@ const initialState: Chart = {
     xAxis: 'name',
     yAxis: 'pv',
   },
-  position: { x: 250, y: 250 },
+  position: { x:250, y:250 }, 
   settings: {
     showLegend: true,
     showGrid: true,
@@ -47,12 +47,7 @@ const currentChartSlice = createSlice({
     setUnit: (state, action: PayloadAction<'gram' | 'kg' | 'ton'>) => {
       state.unit = action.payload;
     },
-    // updateChartColor: (state,action: PayloadAction<{ colorType: keyof ChartSettings['color']; value: string }>) => {
-    //   const { colorType, value } = action.payload;
-    //   if (state.settings?.color) {
-    //     state.settings.color[colorType] = value;
-    //   }
-    // },
+
     processedChartData: (state) => {
       const convertUnit = (value: number) => {
         switch (state.unit) {

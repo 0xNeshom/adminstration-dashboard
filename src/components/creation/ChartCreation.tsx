@@ -25,6 +25,9 @@ const ChartCreation: React.FC = () => {
   useEffect(() => {
     dispatch(processedChartData());
   }, [currentChart.unit, currentChart.timeRange, dispatch]);
+  useEffect(() => {
+    console.log(currentChart.position.x);
+  }, [currentChart.position.x]);
 
   const handleCreate = () => {
     if (!currentChart.type || !currentChart.timeRange) {
@@ -56,9 +59,9 @@ const ChartCreation: React.FC = () => {
     dispatch(saveCharts());
   };
 
-  const handleExport =()=>{
-    dispatch(exportFromLocalStorage())
-  }
+  const handleExport = () => {
+    dispatch(exportFromLocalStorage());
+  };
 
   return (
     <>
@@ -94,8 +97,14 @@ const ChartCreation: React.FC = () => {
         >
           Save
         </ReusableButton>
-        <ReusableButton size='medium' variant='contained' onClick={handleExport}>Export Chart</ReusableButton>
-        <ImportChart/>
+        <ReusableButton
+          size='medium'
+          variant='contained'
+          onClick={handleExport}
+        >
+          Export Chart
+        </ReusableButton>
+        <ImportChart />
       </Box>
       <Divider orientation='horizontal' sx={{ marginTop: '10px' }} />
     </>

@@ -9,7 +9,7 @@ import { Chart } from '../../types/chartTypes';
 // import { editChartColor, toggleChartOrientation } from '../../features/chartsSlice';
 import { useAppDispatch } from '../../store/hooks';
 import ReusableIconButton from '../ui/ReusableIconButton';
-import { toggleChartOrientation } from '../../features/chartsSlice';
+import { toggleChartOrientation, updateChartPosition } from '../../features/chartsSlice';
 import ColorPicker from './ColorPicker';
 
 interface ChartItemProps {
@@ -25,23 +25,26 @@ const ChartItem: React.FC<ChartItemProps> = ({
 }) => {
   const dispatch = useAppDispatch();
   const [isPanelOpen, setIsPanelOpen] = useState<boolean>(false);
-  // const colorPalette = ['#FF5733', '#33FF57', '#3357FF'];
 
-  // const handleColorChange = () => {
-  //   const currentColor = chart.settings?.color.pv;
-  //   const currentIndex = colorPalette.findIndex(color => color === currentColor);
-  //   const nextIndex = (currentIndex + 1) % colorPalette.length;
-  //   const newColor = colorPalette[nextIndex];
-  //   dispatch(editChartColor({ id: chart.id, color: newColor }));
-  // };
+  const handlePositionChange = (_e: unknown, data: { x: number; y: number }) => {
+    dispatch(
+      updateChartPosition({
+        id: chart.id,
+        position: { x: data.x, y: data.y },
+      })
+    );
+    
+  };
   return (
     <Rnd
       default={{
-        x: chart.position?.x || 0,
-        y: chart.position?.y || 0,
-        width: chart.size?.width || 400,
-        height: chart.size?.height || 300,
+        x: chart.position.x || 0,
+        y: chart.position.y || 0,
+        width: chart.size?.width || 500,
+        height: chart.size?.height || 400,
       }}
+      onDragStop={handlePositionChange}
+      // position={{ x: chart.position.x, y: chart.position.y }}
       bounds='parent'
       minWidth={300}
       minHeight={200}

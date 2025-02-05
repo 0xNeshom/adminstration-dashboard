@@ -51,6 +51,7 @@ export interface Chart {
   timeRange: TimeRange;
   unit: Unit;
   processedData:  { label: string; value: number; product: string }[];
+  
 }
 
 // export interface ProcessedChartData {
