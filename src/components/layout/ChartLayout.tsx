@@ -15,7 +15,7 @@ import { useAppSelector } from '../../store/hooks';
 const ChartLayout: React.FC = () => {
   const charts = useAppSelector((state) => state.charts.charts);
   const dispatch = useAppDispatch();
-
+  // const clg = useAppSelector((state)=>state.currentChart.settings.color.main)
   const handleDelete = async (chartId: string) => {
     await dispatch(removeChart(chartId));
     dispatch(saveCharts());
@@ -33,6 +33,11 @@ const ChartLayout: React.FC = () => {
         return null;
     }
   };
+
+  // useEffect(()=>{
+  //   console.log("color",clg)
+
+  // },[clg])
 
   return (
     <Box sx={{ width: '100%', height: '100vh', padding: '20px' }}>

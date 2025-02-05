@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ChartType, Orientation, ChartFields, ChartSettings } from '../types/chartTypes';
+import { ChartType, Orientation, ChartFields } from '../types/chartTypes';
 import { Chart } from '../types/chartTypes';
 import { sampleData } from '../utils/data';
 const initialState: Chart = {
@@ -15,9 +15,7 @@ const initialState: Chart = {
     showLegend: true,
     showGrid: true,
     color: {
-      main: '#82ca9d',
-      secondary: '#8884d8',
-      tertiary: '#ffc658',
+      main: '#16C47F',
     },
   },
 
@@ -49,18 +47,12 @@ const currentChartSlice = createSlice({
     setUnit: (state, action: PayloadAction<'gram' | 'kg' | 'ton'>) => {
       state.unit = action.payload;
     },
-    updateChartColor: (
-      state,
-      action: PayloadAction<{ colorType: keyof ChartSettings['color']; value: string }>
-    ) => {
-      const { colorType, value } = action.payload;
-      if (state.settings?.color) {
-        state.settings.color[colorType] = value;
-      }
-    }
-,    
-    
-
+    // updateChartColor: (state,action: PayloadAction<{ colorType: keyof ChartSettings['color']; value: string }>) => {
+    //   const { colorType, value } = action.payload;
+    //   if (state.settings?.color) {
+    //     state.settings.color[colorType] = value;
+    //   }
+    // },
     processedChartData: (state) => {
       const convertUnit = (value: number) => {
         switch (state.unit) {
@@ -119,21 +111,6 @@ export const {
   setTimeRange,
   setUnit,
   updateChartFields,
-  updateChartColor  // updateChartSettings,
-  // updateChartData,
-  // updateSelectedFields
+
 } = currentChartSlice.actions;
 export default currentChartSlice.reducer;
-
-// updateChartSettings: (
-//   state,
-//   action: PayloadAction<Partial<Chart['settings']>>
-// ) => {
-//   state.settings = { ...state.settings, ...action.payload };
-// },
-// updateChartData: (state, action: PayloadAction<Chart['data']>) => {
-//   state.data = action.payload;
-// },
-// updateSelectedFields: (state, action: PayloadAction<Partial<Chart['selectedFields']>>) => {
-//   state.selectedFields = { ...state.selectedFields, ...action.payload };
-// },

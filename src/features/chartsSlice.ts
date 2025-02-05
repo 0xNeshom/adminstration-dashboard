@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Chart } from '../types/chartTypes';
+import { Chart, ChartSettings } from '../types/chartTypes';
 import { importChartFromJSON } from './importThunks';
 interface ChartsState {
   charts: Chart[];
@@ -33,6 +32,20 @@ const chartsSlice = createSlice({
         state.charts = JSON.parse(savedCharts);
       }
     },
+    updateChartColor: (
+      state,
+      action: PayloadAction<{
+        id: string;
+        colorType: keyof ChartSettings['color'];
+        value: string;
+      }>
+    ) => {
+      const { id, colorType, value } = action.payload;
+      const chart = state.charts.find((c) => c.id === id);
+      if (chart?.settings?.color) {
+        chart.settings.color[colorType] = value;
+      }
+    },
     toggleChartOrientation: (state, action: PayloadAction<string>) => {
       const chart = state.charts.find((c) => c.id === action.payload);
       if (chart) {
@@ -40,21 +53,23 @@ const chartsSlice = createSlice({
           chart.orientation === 'vertical' ? 'horizontal' : 'vertical';
       }
     },
-    
   },
   extraReducers: (builder) => {
     builder
       .addCase(importChartFromJSON.pending, (state) => {
-        state.status = "loading";
+        state.status = 'loading';
         state.error = null;
       })
-      .addCase(importChartFromJSON.fulfilled, (state, action: PayloadAction<Chart[]>) => {
-        state.status = "succeeded";
-        state.charts = action.payload;
-      })
+      .addCase(
+        importChartFromJSON.fulfilled,
+        (state, action: PayloadAction<Chart[]>) => {
+          state.status = 'succeeded';
+          state.charts = action.payload;
+        }
+      )
       .addCase(importChartFromJSON.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload ? action.payload : "Error";
+        state.status = 'failed';
+        state.error = action.payload ? action.payload : 'Error';
       });
   },
 });
@@ -65,6 +80,6 @@ export const {
   saveCharts,
   loadCharts,
   toggleChartOrientation,
-  // editChartColor,
+  updateChartColor,
 } = chartsSlice.actions;
 export default chartsSlice.reducer;

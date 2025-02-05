@@ -49,7 +49,7 @@ const BarChartComponent: React.FC<BarChartProps> = ({ chart }) => {
           <>
             <XAxis type='category' dataKey='value' tick={{ fontSize: 12 }} />
             <YAxis type='category' dataKey='label' style={{ fontSize: 12 }} />
-            <Bar dataKey='value' fill='black' stroke='#82ca9d'>
+            <Bar dataKey='value' fill={chart.settings.color.main} >
               <LabelList dataKey='label' position='right' />
             </Bar>
           </>
@@ -57,7 +57,7 @@ const BarChartComponent: React.FC<BarChartProps> = ({ chart }) => {
           <>
             <XAxis type='category' dataKey='label' tick={{ fontSize: 12 }} />
             <YAxis type='number' style={{ fontSize: 12 }} />
-            <Bar dataKey='value' fill='#82ca9d' activeBar={{ r: 8 }}>
+            <Bar dataKey='value' fill={chart.settings.color.main} activeBar={{ r: 8 }}>
               <LabelList dataKey='name' position='top' />
             </Bar>
           </>

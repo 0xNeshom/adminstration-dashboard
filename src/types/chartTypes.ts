@@ -31,8 +31,8 @@ export interface ChartSettings {
   showGrid: boolean;
   color: {
     main: string;
-    secondary: string, 
-    tertiary:string;
+  //   secondary: string, 
+  //   tertiary:string;
   };
 }
 

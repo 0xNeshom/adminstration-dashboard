@@ -52,8 +52,9 @@ const LineChartComponent: React.FC<LineChartProps> = ({ chart }) => {
             <Line
               type='linear'
               dataKey='value'
-              stroke='#82ca9d'
+              stroke={chart.settings.color.main}
               activeDot={{ r: 8 }}
+              // fill={chart.settings.color.main}
             />
             <LabelList dataKey='label' position='right' />
           </>
@@ -64,7 +65,7 @@ const LineChartComponent: React.FC<LineChartProps> = ({ chart }) => {
             <Line
               type='linear'
               dataKey='value'
-              stroke='#82ca9d'
+              stroke={chart.settings.color.main}
               activeDot={{ r: 8 }}
             />
             <LabelList dataKey='name' position='top' />
@@ -104,7 +105,7 @@ const LineChartComponent: React.FC<LineChartProps> = ({ chart }) => {
               ? chart.fields.yAxis
               : chart.fields.xAxis
           }
-          stroke={chart.settings?.color.pv}
+          stroke={chart.settings?.color.main}
           activeDot={{ r: 8 }}
         />
       </LineChart>
