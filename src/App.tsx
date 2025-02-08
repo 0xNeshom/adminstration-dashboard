@@ -8,12 +8,12 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import LayersIcon from '@mui/icons-material/Layers';
 import ChartLayout from './components/layout/ChartLayout';
 import { createTheme } from '@mui/material/styles';
-import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { loadCharts } from './features/chartsSlice';
 import { Chip, Stack, Tooltip, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CloudCircleIcon from '@mui/icons-material/CloudCircle';
+import { useAppDispatch } from './store/hooks';
 
 const NAVIGATION: Navigation = [
   {
@@ -86,7 +86,7 @@ const demoTheme = createTheme({
 });
 
 const App = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(loadCharts());

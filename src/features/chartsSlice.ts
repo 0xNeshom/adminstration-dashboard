@@ -63,6 +63,11 @@ const chartsSlice = createSlice({
         chart.position = position;
       }
     },
+    deleteAll: (state) => {
+      state.charts = []
+    
+    },
+  
   },
   extraReducers: (builder) => {
     builder
@@ -92,5 +97,6 @@ export const {
   toggleChartOrientation,
   updateChartColor,
   updateChartPosition,
+  deleteAll
 } = chartsSlice.actions;
 export default chartsSlice.reducer;

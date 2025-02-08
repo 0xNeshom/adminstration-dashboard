@@ -16,8 +16,8 @@ const UnitInput: React.FC<UnitInputProps> = ({ error }) => {
   const dispatch = useAppDispatch();
   const currentChart = useAppSelector((state) => state.currentChart);
   return (
-    <FormControl size='small' style={{ minWidth: 110 }}>
-      <InputLabel>Unit</InputLabel>
+    <FormControl size='small' >
+      <InputLabel >Unit</InputLabel>
       <Select
         value={currentChart.unit}
         onChange={(e) =>

@@ -39,7 +39,7 @@ const BarChartComponent: React.FC<BarChartProps> = ({ chart }) => {
           <>
             <XAxis type='category' dataKey='value' tick={{ fontSize: 12 }} />
             <YAxis type='category' dataKey='label' style={{ fontSize: 12 }} />
-            <Bar dataKey='value' fill={chart.settings.color.main} >
+            <Bar dataKey='value' fill={chart.settings.color.main} minPointSize={100}>
               <LabelList dataKey='label' position='right' />
             </Bar>
           </>

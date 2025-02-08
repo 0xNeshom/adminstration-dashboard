@@ -16,7 +16,7 @@ const TimeRange: React.FC<TimeRangeProps> = ({ error }) => {
   const dispatch = useAppDispatch();
   const currentChart = useAppSelector((state) => state.currentChart);
   return (
-    <FormControl size='small' style={{ minWidth: 130 }}>
+    <FormControl size='small' style={{ minWidth: 100 }}>
       <InputLabel>Time Range </InputLabel>
       <Select
         value={currentChart.timeRange}

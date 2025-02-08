@@ -1,13 +1,13 @@
 import React, { ChangeEvent } from 'react';
 import { importChartFromJSON } from '../../../features/importThunks';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { useAppDispatch } from '../../../store/hooks';
 import { Button } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
 
 const ImportChart: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { status, error } = useAppSelector((state) => state.charts);
+  // const { status, error } = useAppSelector((state) => state.charts);
 
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',

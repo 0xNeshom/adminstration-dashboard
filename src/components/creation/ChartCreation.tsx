@@ -1,6 +1,6 @@
-import { Box, SelectChangeEvent, Typography } from '@mui/material';
+import { Box, Button, SelectChangeEvent, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
-import { addChart, saveCharts } from '../../features/chartsSlice';
+import { addChart, deleteAll, saveCharts } from '../../features/chartsSlice';
 import {
   processedChartData,
   setChartType,
@@ -105,6 +105,9 @@ const ChartCreation: React.FC = () => {
           Export Chart
         </ReusableButton>
         <ImportChart />
+        <Button variant='contained' size='medium' color='error' sx={{width:'50px'}} onClick={()=>dispatch(deleteAll())}>
+          Delete 
+        </Button>
       </Box>
       <Divider orientation='horizontal' sx={{ marginTop: '10px' }} />
     </>

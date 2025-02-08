@@ -40,14 +40,13 @@ const ChartItem: React.FC<ChartItemProps> = ({
       default={{
         x: chart.position.x || 0,
         y: chart.position.y || 0,
-        width: chart.size?.width || 500,
-        height: chart.size?.height || 400,
+        width: chart.size?.width || 400,
+        height: chart.size?.height || 300,
       }}
       onDragStop={handlePositionChange}
-      // position={{ x: chart.position.x, y: chart.position.y }}
       bounds='parent'
-      minWidth={300}
-      minHeight={200}
+      minWidth={400}
+      minHeight={300}
     >
       <Box
         sx={{

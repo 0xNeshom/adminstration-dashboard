@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ChartType, Orientation, ChartFields } from '../types/chartTypes';
+import {  ChartType, Orientation } from '../types/chartTypes';
 import { Chart } from '../types/chartTypes';
 import { sampleData } from '../utils/data';
+import {processChartData} from '../utils/chartDataProcessor'
 const initialState: Chart = {
   id: Date.now().toString(),
   type: 'bar',
@@ -35,9 +36,7 @@ const currentChartSlice = createSlice({
     setChartOrientation: (state, action: PayloadAction<Orientation>) => {
       state.orientation = action.payload;
     },
-    updateChartFields: (state, action: PayloadAction<Partial<ChartFields>>) => {
-      state.fields = { ...state.fields, ...action.payload };
-    },
+    
     setTimeRange: (
       state,
       action: PayloadAction<'daily' | 'monthly' | 'yearly'>
@@ -47,54 +46,8 @@ const currentChartSlice = createSlice({
     setUnit: (state, action: PayloadAction<'gram' | 'kg' | 'ton'>) => {
       state.unit = action.payload;
     },
-
-    processedChartData: (state) => {
-      const convertUnit = (value: number) => {
-        switch (state.unit) {
-          case 'gram':
-            return value * 1000;
-          case 'ton':
-            return value / 1000;
-          default:
-            return value;
-        }
-      };
-      const groupedData: Record<string, number> = {};
-      state.data.forEach((item) => {
-        const date = new Date(item.date);
-        let key: string = '';
-
-        switch (state.timeRange) {
-          case 'daily':
-            key = date.toISOString().split('T')[0];
-            break;
-
-          case 'monthly':
-            key = `${date.getFullYear()}-${date.getMonth() + 1}`;
-            break;
-
-          case 'yearly':
-            key = date.getFullYear().toString();
-            break;
-        }
-
-        if (!groupedData[key]) {
-          groupedData[key] = 0;
-        }
-
-        groupedData[key] += convertUnit(item.quantity);
-      });
-
-      state.processedData = Object.entries(groupedData).map(
-        ([label, value]) => {
-          const product = state.data.length > 0 ? state.data[0].product : '';
-          return {
-            label,
-            value: Number(value.toFixed(2)),
-            product,
-          };
-        }
-      );
+ processedChartData: (state) => {
+      state.processedData = processChartData(state.data, state.timeRange, state.unit);
     },
   },
 });
@@ -105,7 +58,7 @@ export const {
   processedChartData,
   setTimeRange,
   setUnit,
-  updateChartFields,
+  
 
 } = currentChartSlice.actions;
 export default currentChartSlice.reducer;
